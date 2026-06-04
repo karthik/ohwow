@@ -83,6 +83,11 @@
   /* ---------- deck v2: fundraising slides ---------- */
   .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; width:100%; }
   .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:22px; width:100%; align-items:stretch; }
+  .bento { display:grid; grid-template-columns:1fr 1fr; gap:16px; width:100%; }
+  .bento .card { display:flex; flex-direction:column; gap:9px; padding:20px 22px; }
+  .bento .bi { width:44px; height:44px; border-radius:12px; border:var(--ob) solid var(--ink); display:grid; place-items:center; font-weight:800; font-size:.74em; box-shadow:var(--pop-sm); }
+  .bento h3 { font-size:.78em; margin:0; }
+  .bento p { font-size:.46em; line-height:1.42; font-weight:600; color:var(--ink-soft); margin:0; }
   .card { background:var(--card); border:var(--ob) solid var(--ink); border-radius:18px; box-shadow:var(--pop); padding:22px 24px; }
   .card.yellow{background:var(--yellow);}
   .statcard .n { font-size:1.9em; font-weight:800; letter-spacing:-0.045em; color:var(--coral-deep); line-height:1; }
@@ -253,12 +258,12 @@
     <div class="stack">
       <span class="chip">why we win</span>
       <h2>Hard to copy. Compounds over time.</h2>
-      <ul class="flat" style="margin-top:2px; gap:14px;">
-        <li><span class="b" style="background:#fff">iD</span> <span><b>Verified identity.</b> Every researcher anchored to a real ORCID — trust you can't fake or scrape.</span></li>
-        <li><span class="b" style="background:#fff">≈</span> <span><b>Meaning-matching.</b> We match on what a session was actually about, not tags or keywords.</span></li>
-        <li><span class="b" style="background:#fff">◎</span> <span><b>Network effects.</b> Every active researcher makes matching sharper and rooms denser, field by field.</span></li>
-        <li><span class="b" style="background:#fff">⌘</span> <span><b>Native distribution.</b> We live inside the AI tools researchers use daily — no new surface to adopt.</span></li>
-      </ul>
+      <div class="bento" style="margin-top:2px;">
+        <div class="card"><div class="bi" style="background:var(--blue)">iD</div><h3>Verified identity</h3><p>Every researcher anchored to a real ORCID — trust you can't fake or scrape.</p></div>
+        <div class="card"><div class="bi" style="background:var(--pink)">≈</div><h3>Meaning-matching</h3><p>We match on what a session was actually about — not tags or keywords.</p></div>
+        <div class="card"><div class="bi" style="background:var(--green)">◎</div><h3>Network effects</h3><p>Every active researcher makes rooms denser, field by field.</p></div>
+        <div class="card"><div class="bi" style="background:var(--yellow)">⌘</div><h3>Native distribution</h3><p>We live inside the AI tools researchers use daily — no new surface to adopt.</p></div>
+      </div>
     </div>
   </section>
 
@@ -268,7 +273,7 @@
       <span class="chip">the team</span>
       <h2>Why us.</h2>
       <div class="team" style="margin-top:6px;">
-        <div class="card teamcard"><div class="ava" style="background:#ff7d4f">CG</div><h3>Casey Greene</h3><div class="role">HEAD OF INVESTOR RELATIONS</div><p>Bridges frontier science and the capital that funds it — getting why this matters into the right rooms.</p></div>
+        <div class="card teamcard"><div class="ava" style="background:#ff7d4f">CG</div><h3>Casey Greene</h3><div class="role">DEPARTMENT CHAIR OF INVESTOR RELATIONS</div><p>Bridges frontier science and the capital that funds it — getting why this matters into the right rooms.</p></div>
         <div class="card teamcard"><div class="ava" style="background:#7cc6f5">HL</div><h3>Henry Lee</h3><div class="role">CHIEF MARKETING OFFICER</div><p>Turns "oh, wow" into a movement. Built audiences for dev tools researchers actually adopt.</p></div>
         <div class="card teamcard"><div class="ava" style="background:#2f9b72">BC</div><h3>Betsy Cannon</h3><div class="role">CHIEF TECHNOLOGY &amp; FORKS OFFICER</div><p>Builds the matching engine — embeddings, ORCID, and the infra that opens a room in under a second.</p></div>
         <div class="card teamcard"><div class="ava" style="background:#8f6ad6">KR</div><h3>Karthik Ram</h3><div class="role">CHIEF WONDER OFFICER</div><p>Keeps the 2am magic alive — making sure no one chasing a hard question ever has to wonder alone.</p></div>
