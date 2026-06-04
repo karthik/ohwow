@@ -104,7 +104,7 @@
   .wonder-scene { position: relative; width: min(580px, 100%); margin: 0 auto; justify-self: end; }
   .cast { width: 100%; height: auto; display: block; overflow: visible; }
   .cast .ink { stroke: var(--ink); }
-  .cast .sun-rays { transform-box: fill-box; transform-origin: center; animation: spin 32s linear infinite; }
+  .cast .sun-rays { transform-box: view-box; transform-origin: 270px 250px; animation: spin 32s linear infinite; }
   .cast .floaty { transform-box: fill-box; transform-origin: center; }
   .cast .f1 { animation: float 5s ease-in-out infinite; } .cast .f2 { animation: float 6.4s ease-in-out infinite 0.4s; }
   .cast .f3 { animation: float 5.6s ease-in-out infinite 0.8s; } .cast .f4 { animation: float 7.2s ease-in-out infinite 0.2s; }
@@ -117,7 +117,7 @@
   .speech { position: absolute; top: 6%; left: -2%; background: var(--card); border: var(--ob) solid var(--ink); border-radius: 16px 16px 16px 4px; padding: 8px 14px; font-weight: 800; font-size: 1.02rem; box-shadow: var(--pop-sm); transform: rotate(-5deg); z-index: 4; }
   .speech .em { color: var(--coral-deep); }
   .sticker { position: absolute; top: -5%; right: -2%; width: 124px; height: 124px; animation: bob 7s ease-in-out infinite; z-index: 3; }
-  .sticker .ring-spin { transform-box: fill-box; transform-origin: center; animation: spin 22s linear infinite; }
+  .sticker .ring-spin { transform-box: view-box; transform-origin: 64px 64px; animation: spin 22s linear infinite; }
   .sticker text { font-weight: 800; font-size: 9.6px; letter-spacing: 1.4px; fill: var(--ink); }
 
   /* ---------- Sections ---------- */
