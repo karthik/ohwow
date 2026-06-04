@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ohwow science — pitch</title>
+<title>ohwow science — seed</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,84 +19,64 @@
     --green:#74d3a0; --green-deep:#2f9b72; --lilac:#c6b4f2; --plum:#8f6ad6;
     --ob:2.5px; --pop:6px 6px 0 var(--ink); --pop-sm:3px 3px 0 var(--ink);
   }
-
-  .reveal { font-family:'Figtree', system-ui, sans-serif; color:var(--ink); font-weight:500; font-size:30px; }
+  .reveal { font-family:'Figtree', system-ui, sans-serif; color:var(--ink); font-weight:500; font-size:32px; }
   .reveal .slides { text-align:left; }
   .reveal .slides section { height:100%; }
-  .reveal h1, .reveal h2, .reveal h3 { font-family:'Figtree', sans-serif; color:var(--ink); font-weight:800; letter-spacing:-0.035em; line-height:1.02; text-transform:none; margin:0; }
-  .reveal h1 { font-size:3.1em; } .reveal h2 { font-size:2.2em; } .reveal h3 { font-size:1.2em; }
+  .reveal h1, .reveal h2 { font-family:'Figtree', sans-serif; color:var(--ink); font-weight:800; letter-spacing:-0.038em; line-height:1.02; text-transform:none; margin:0; }
+  .reveal h1 { font-size:3.3em; } .reveal h2 { font-size:2.4em; }
   .reveal p { line-height:1.5; } .reveal strong { font-weight:800; }
-  .reveal section img, .reveal svg { vertical-align:middle; }
-  .reveal .controls { color:var(--ink); }
-  .reveal .progress { color:var(--coral); height:6px; }
+  .reveal .controls { color:var(--ink); } .reveal .progress { color:var(--coral); height:6px; }
   .mono { font-family:'JetBrains Mono', monospace; }
 
-  /* layout helpers */
-  .stack { display:flex; flex-direction:column; justify-content:center; height:100%; gap:22px; }
+  .stack { display:flex; flex-direction:column; justify-content:center; height:100%; gap:24px; }
   .center { text-align:center; align-items:center; }
-  .sub { color:var(--ink-soft); font-size:1.05em; font-weight:500; max-width:18em; }
-  .white .sub, .ink-bg .sub { color:rgba(255,255,255,0.92); }
+  .sub { color:var(--ink-soft); font-size:1.02em; font-weight:500; max-width:20em; }
+  .white .sub { color:rgba(255,255,255,0.92); }
 
-  .chip { display:inline-flex; align-items:center; gap:.5em; align-self:flex-start; font-size:.55em; font-weight:800; letter-spacing:0.16em; text-transform:uppercase;
+  .chip { display:inline-flex; align-items:center; gap:.5em; align-self:flex-start; font-size:.5em; font-weight:800; letter-spacing:0.16em; text-transform:uppercase;
           background:var(--card); color:var(--ink); border:var(--ob) solid var(--ink); border-radius:100px; padding:8px 18px; box-shadow:var(--pop-sm); }
   .chip::before { content:"✦"; color:var(--coral); }
   .center .chip { align-self:center; }
+  .white .chip { background:rgba(255,255,255,0.16); color:#fff; border-color:#fff; box-shadow:4px 4px 0 rgba(0,0,0,0.18); } .white .chip::before { color:#fff; }
 
-  .brandmark { font-weight:800; letter-spacing:-0.04em; font-size:1.4em; display:inline-flex; align-items:center; gap:.3em; }
+  .brandmark { font-weight:800; letter-spacing:-0.04em; font-size:1.5em; display:inline-flex; align-items:center; gap:.3em; }
   .brandmark .star { color:var(--coral); } .brandmark .wow { color:var(--plum); }
-
-  .pop { color:var(--coral-deep); }
-  .white .pop { color:#fff; }
+  .pop { color:var(--coral-deep); } .white .pop { color:#fff; }
+  .white h1, .white h2, .white p { color:#fff; }
 
   .squiggle { position:relative; display:inline-block; }
   .squiggle svg { position:absolute; left:-1%; bottom:-0.16em; width:102%; height:0.3em; overflow:visible; }
   .squiggle svg path { fill:none; stroke:var(--coral); stroke-width:6; stroke-linecap:round; }
-  .squiggle.green svg path { stroke:var(--green-deep); } .squiggle.white svg path { stroke:#fff; }
+  .squiggle.green svg path { stroke:var(--green-deep); }
 
-  /* full-color slides */
-  .white h1, .white h2, .white h3, .white p { color:#fff; }
-  .white .chip { background:rgba(255,255,255,0.16); color:#fff; border-color:#fff; box-shadow:4px 4px 0 rgba(0,0,0,0.18); }
-  .white .chip::before { color:#fff; }
+  .steps { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; }
+  .pill { font-family:'JetBrains Mono', monospace; font-size:.56em; font-weight:700; background:var(--card); border:var(--ob) solid var(--ink); border-radius:100px; padding:9px 18px; box-shadow:var(--pop-sm); }
+  .pill b { color:var(--coral-deep); }
 
-  /* cards */
-  .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:10px; }
-  .pcard { background:var(--card); border:var(--ob) solid var(--ink); border-radius:22px; padding:26px 24px; box-shadow:var(--pop); }
-  .pcard .num { width:42px; height:42px; border-radius:50%; display:grid; place-items:center; background:var(--ink); color:#fff; font-weight:800; font-size:1.1em; margin-bottom:14px; }
-  .pcard h3 { font-size:1.05em; margin-bottom:8px; }
-  .pcard p { font-size:.62em; color:var(--ink-soft); line-height:1.4; }
-  .pcard code { font-family:'JetBrains Mono', monospace; font-size:.86em; background:var(--bg); border:1.5px solid var(--ink); border-radius:8px; padding:2px 7px; display:inline-block; margin-top:10px; }
+  ul.flat { list-style:none; margin:0; padding:0; display:grid; gap:18px; }
+  ul.flat li { display:flex; gap:16px; align-items:center; font-size:.82em; font-weight:600; }
+  ul.flat li .b { flex-shrink:0; width:46px; height:46px; border-radius:12px; border:var(--ob) solid var(--ink); display:grid; place-items:center; font-weight:800; font-size:.8em; box-shadow:var(--pop-sm); }
 
-  ul.flat { list-style:none; margin:0; padding:0; display:grid; gap:16px; }
-  ul.flat li { display:flex; gap:14px; align-items:flex-start; font-size:.82em; }
-  ul.flat li .b { flex-shrink:0; width:30px; height:30px; border-radius:9px; border:var(--ob) solid var(--ink); display:grid; place-items:center; font-weight:800; box-shadow:var(--pop-sm); }
-  .white ul.flat li .b { border-color:#fff; }
-
-  .tags { display:flex; flex-wrap:wrap; gap:12px; }
-  .tag { font-family:'JetBrains Mono', monospace; font-size:.6em; font-weight:700; background:var(--card); border:var(--ob) solid var(--ink); border-radius:100px; padding:7px 16px; box-shadow:var(--pop-sm); }
-  .white .tag { background:rgba(255,255,255,0.16); color:#fff; border-color:#fff; }
-
-  /* terminal */
-  .terminal { background:var(--card); border:var(--ob) solid var(--ink); border-radius:14px; overflow:hidden; box-shadow:var(--pop); max-width:880px; margin:8px auto 0; }
+  .terminal { background:var(--card); border:var(--ob) solid var(--ink); border-radius:14px; overflow:hidden; box-shadow:var(--pop); max-width:760px; }
   .term-bar { display:flex; align-items:center; gap:8px; padding:11px 15px; border-bottom:var(--ob) solid var(--ink); background:var(--bg); }
   .term-bar .d { width:12px; height:12px; border-radius:50%; border:2px solid var(--ink); } .d.r{background:#ff6b5e;}.d.y{background:#ffce4a;}.d.g{background:#46c96e;}
-  .term-bar .title { margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:.5em; color:var(--ink-soft); font-weight:600; }
-  .term-bar .cc { margin-left:auto; font-size:.46em; font-weight:700; color:var(--coral-deep); }
-  .term-body { padding:20px 22px; font-family:'JetBrains Mono', monospace; font-size:.56em; line-height:1.95; color:var(--ink); }
+  .term-bar .title { margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:.46em; color:var(--ink-soft); font-weight:600; }
+  .term-bar .cc { margin-left:auto; font-size:.42em; font-weight:700; color:var(--coral-deep); }
+  .term-body { padding:18px 20px; font-family:'JetBrains Mono', monospace; font-size:.5em; line-height:1.9; color:var(--ink); }
   .term-body .box { display:inline-block; border:2px solid rgba(44,38,34,.3); border-radius:8px; padding:3px 11px; margin-bottom:6px; }
   .term-body .pr { color:var(--plum); font-weight:700; } .term-body .cmd { font-weight:600; }
   .term-body .mc { color:var(--coral-deep); font-weight:700; } .term-body .mg { color:var(--green-deep); font-weight:700; } .term-body .mp { color:var(--plum); font-weight:700; }
   .term-body .dim { color:var(--ink-faint); } .term-body .wow { color:var(--coral-deep); font-weight:800; }
 
-  .stamp { width:150px; height:150px; }
+  .stamp { width:160px; height:160px; }
   .stamp .ring-spin { transform-box:view-box; transform-origin:64px 64px; animation:spin 22s linear infinite; }
   .stamp text { font-weight:800; font-size:9.6px; letter-spacing:1.4px; fill:var(--ink); }
   @keyframes spin { to { transform:rotate(360deg); } }
-  .cast { width:100%; max-width:560px; height:auto; overflow:visible; }
+  .cast { width:100%; max-width:520px; height:auto; overflow:visible; }
   .cast .ink { stroke:var(--ink); }
-  .row { display:flex; align-items:center; gap:40px; }
+  .row { display:flex; align-items:center; gap:48px; height:100%; }
   .grow { flex:1; }
-
-  .foot { position:absolute; bottom:18px; left:40px; font-size:.5em; color:var(--ink-faint); font-weight:600; }
+  .foot { position:absolute; bottom:18px; left:42px; font-size:.46em; color:var(--ink-faint); font-weight:600; }
   .white .foot { color:rgba(255,255,255,0.7); }
 </style>
 </head>
@@ -107,12 +87,11 @@
 
   <!-- 1. TITLE -->
   <section data-background-color="#f4efe4">
-    <div class="row" style="height:100%;">
+    <div class="row">
       <div class="stack grow">
-        <span class="chip">AI for science</span>
         <div class="brandmark"><span class="star">✦</span>oh<span class="wow">wow</span></div>
         <h1>You are not<br/><span class="pop squiggle">working alone<svg viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 8C40 3 90 3 150 6s110 4 148 0"/></svg></span>.</h1>
-        <p class="sub">Find the people wondering about exactly what you are — straight from your terminal.</p>
+        <p class="sub">A meeting place for people doing AI for science.</p>
       </div>
       <svg class="stamp" viewBox="0 0 128 128">
         <defs><path id="srng" d="M64,64 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none"/></defs>
@@ -121,130 +100,75 @@
         <use href="#sparkle" x="46" y="46" width="36" style="color:#ff7d4f"/>
       </svg>
     </div>
-    <div class="foot">ohwow science · pitch</div>
+    <div class="foot">ohwow science · seed round</div>
   </section>
 
   <!-- 2. PROBLEM -->
-  <section data-background-color="#f4efe4">
-    <div class="stack">
-      <span class="chip">the problem</span>
-      <h2>The hardest part of frontier work isn't the math.<br/><span class="pop">It's the silence.</span></h2>
-      <p class="sub" style="max-width:24em;">Push far enough into a question and you become the only person nearby who cares about exactly this. So you chase it alone, at 2am, with no one to tell when it finally moves.</p>
-    </div>
-  </section>
-
-  <!-- 3. COST -->
   <section data-background-color="#c6b4f2">
     <div class="stack">
-      <span class="chip">why it matters</span>
-      <h2>Loneliness has a cost.</h2>
-      <ul class="flat" style="margin-top:6px;">
-        <li><span class="b" style="background:#ff9ec6">↺</span> Effort gets duplicated — three labs quietly solving the same thing.</li>
-        <li><span class="b" style="background:#ffd64d">…</span> Progress slows when there's no one to think out loud with.</li>
-        <li><span class="b" style="background:#74d3a0">∿</span> Quiet burnout, and good people drifting out of the field.</li>
-      </ul>
+      <span class="chip">the problem</span>
+      <h1>The hardest part of frontier work<br/>isn't the math. <span class="pop">It's the silence.</span></h1>
+      <p class="sub" style="max-width:26em;">Push far enough into a question and you're the only person nearby who cares about exactly this. So you chase it alone.</p>
     </div>
   </section>
 
-  <!-- 4. INSIGHT -->
-  <section data-background-color="#ffd64d">
-    <div class="stack">
-      <span class="chip">the oh wow</span>
-      <h2>Your AI session already knows<br/>what you're working on.</h2>
-      <p class="sub" style="max-width:26em;">Embed the <strong>meaning</strong> of a single session — the reasoning, not the keywords — and you can surface the handful of people circling the same unknown. Right now, while it's fresh.</p>
-    </div>
-  </section>
-
-  <!-- 5. PRODUCT -->
+  <!-- 3. SOLUTION -->
   <section data-background-color="#ff7d4f" class="white">
     <div class="stack center">
-      <span class="chip">the product</span>
-      <h1 class="mono" style="font-size:3.4em;">/wonder</h1>
-      <p class="sub" style="max-width:24em; text-align:center;">One command inside Claude Code. It summarizes your session, signs it with your ORCID, and walks you into a room of kindred minds.</p>
-    </div>
-  </section>
-
-  <!-- 6. HOW IT WORKS -->
-  <section data-background-color="#7cc6f5">
-    <div class="stack">
-      <span class="chip">how it works</span>
-      <h2>Set up once. Then it's one word.</h2>
-      <div class="cards">
-        <div class="pcard"><div class="num">1</div><h3>Add the skill</h3><p>Pull the ohwow skill from our server into Claude.</p><code>/plugin install wonder</code></div>
-        <div class="pcard"><div class="num">2</div><h3>Set your ORCID</h3><p>Saved to local config, sent with each request. Stays on your machine.</p><code>/wonder config orcid …</code></div>
-        <div class="pcard"><div class="num">3</div><h3>Wonder</h3><p>Summarize, match, and open a room with people on the same thing.</p><code>/wonder</code></div>
+      <span class="chip">the solution</span>
+      <h1 class="mono">/wonder</h1>
+      <p class="sub center" style="max-width:22em;">One command in Claude Code. It reads your AI session, matches on meaning and ORCID, and opens a room with the handful of people on your exact question.</p>
+      <div class="steps" style="justify-content:center;">
+        <span class="pill"><b>1</b> install</span><span class="pill"><b>2</b> set ORCID</span><span class="pill"><b>3</b> /wonder</span>
       </div>
     </div>
   </section>
 
-  <!-- 7. DEMO -->
+  <!-- 4. DEMO -->
   <section data-background-color="#f4efe4">
-    <div class="stack">
-      <span class="chip">what it looks like</span>
+    <div class="row">
+      <div class="stack grow" style="max-width:9em;">
+        <span class="chip">in the wild</span>
+        <h2>A blinking cursor,<br/>then your people.</h2>
+      </div>
       <div class="terminal">
         <div class="term-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="title">~/research</span><span class="cc">✻ Claude Code</span></div>
         <div class="term-body">
           <div class="box"><span class="pr">&gt;</span> <span class="cmd">/wonder</span></div><br/>
           <span class="mc">⏺</span> Reading your session (142 turns)<br/>
           <span class="mp">⏺</span> Distilling what you're chasing…<br/>
-          &nbsp;&nbsp;<span class="dim">⎿ topic: low-data protein structure prediction</span><br/>
+          &nbsp;&nbsp;<span class="dim">⎿ topic: low-data protein structure</span><br/>
           <span class="mg">⏺</span> Signing with ORCID 0000-0001-8713-9213<br/>
           <span class="mc">⏺</span> curl → ohwow.science/wonder<br/>
           &nbsp;&nbsp;<span class="dim">⎿ 7 researchers on the same question</span><br/>
-          <span class="mp">⏺</span> <span class="room" style="color:var(--plum)">Opening room: protein-folding · low-data</span><br/>
+          <span class="mp">⏺</span> <span style="color:var(--plum)">Opening room: protein-folding · low-data</span><br/>
           <span class="wow">oh, wow — you're not alone in here.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 8. DIFFERENT -->
-  <section data-background-color="#74d3a0">
-    <div class="stack">
-      <span class="chip">why it's different</span>
-      <h2>Not another network to maintain.</h2>
-      <ul class="flat" style="margin-top:6px;">
-        <li><span class="b" style="background:#fffdf7">◎</span> <strong>Semantic match</strong> on your real reasoning — not tags, follows, or keywords.</li>
-        <li><span class="b" style="background:#fffdf7">✓</span> <strong>ORCID-anchored</strong>, so the person across from you is a real researcher.</li>
-        <li><span class="b" style="background:#fffdf7">⌁</span> <strong>Ephemeral rooms</strong> — they close with the conversation. No feed, no inbox.</li>
-        <li><span class="b" style="background:#fffdf7">›_</span> <strong>Lives in your terminal</strong> — zero new app, zero context-switch.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 9. WHY NOW -->
-  <section data-background-color="#f4efe4">
+  <!-- 5. WHY NOW -->
+  <section data-background-color="#7cc6f5">
     <div class="stack">
       <span class="chip">why now</span>
       <h2>Three things just became true.</h2>
-      <ul class="flat" style="margin-top:6px;">
-        <li><span class="b" style="background:#7cc6f5">AI</span> Researchers now run AI sessions every day — a constant, honest signal of what they're working on.</li>
-        <li><span class="b" style="background:#ffd64d">iD</span> ORCID is the near-universal identity layer for science.</li>
-        <li><span class="b" style="background:#ff9ec6">≈</span> Embeddings made matching on <em>meaning</em> cheap and good.</li>
+      <ul class="flat" style="margin-top:4px;">
+        <li><span class="b" style="background:#fff">AI</span> Researchers run AI sessions daily — a live signal of what they're working on.</li>
+        <li><span class="b" style="background:#fff">iD</span> ORCID is the near-universal identity layer for science.</li>
+        <li><span class="b" style="background:#fff">≈</span> Embeddings made matching on meaning cheap and good.</li>
       </ul>
     </div>
   </section>
 
-  <!-- 10. WHO -->
-  <section data-background-color="#ff9ec6">
-    <div class="stack">
-      <span class="chip">who it's for</span>
-      <h2>People doing AI for science.</h2>
-      <p class="sub" style="max-width:24em;">The ones working where their field meets machine learning — usually a little ahead of the people around them.</p>
-      <div class="tags">
-        <span class="tag">// q-bio</span><span class="tag">// climate</span><span class="tag">// neuro</span><span class="tag">// chem</span>
-        <span class="tag">// astro</span><span class="tag">// materials</span><span class="tag">// methods</span><span class="tag">// + more</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 11. VISION -->
+  <!-- 6. VISION + ASK -->
   <section data-background-color="#f4efe4">
-    <div class="row" style="height:100%;">
+    <div class="row">
       <div class="stack grow">
-        <span class="chip">the vision</span>
-        <h2>From alone<br/><span class="squiggle green">to together.<svg viewBox="0 0 260 12" preserveAspectRatio="none"><path d="M2 8C50 3 110 3 160 6s80 4 98 0"/></svg></span></h2>
-        <p class="sub">A living constellation of science — every quiet session a door to the people who'd light up to hear about it.</p>
+        <span class="chip">the ask</span>
+        <h1>From alone<br/><span class="squiggle green">to together.<svg viewBox="0 0 260 12" preserveAspectRatio="none"><path d="M2 8C50 3 110 3 160 6s80 4 98 0"/></svg></span></h1>
+        <p class="sub">Raising a seed round to bring <strong>/wonder</strong> to every researcher doing AI for science.</p>
+        <p class="mono" style="color:var(--ink-faint); font-size:.6em;">ohwow.science · awake at 2am ✦</p>
       </div>
       <svg class="cast" viewBox="0 0 540 470" aria-hidden="true">
         <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe488"/><stop offset="1" stop-color="#ffce4a"/></linearGradient></defs>
@@ -263,15 +187,16 @@
         <circle cx="140" cy="315" r="5.5" fill="#2c2622"/><circle cx="178" cy="315" r="5.5" fill="#2c2622"/>
         <path d="M144 332 Q159 346 174 332" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
         <ellipse cx="128" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/><ellipse cx="190" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/>
+        <!-- lilac behind moon -->
+        <circle cx="478" cy="352" r="44" fill="#c6b4f2" class="ink" stroke-width="5"/>
+        <circle cx="466" cy="347" r="5" fill="#2c2622"/><circle cx="490" cy="347" r="5" fill="#2c2622"/>
+        <path d="M468 360 Q478 369 488 360" fill="none" class="ink" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="458" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/><ellipse cx="498" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/>
         <circle cx="388" cy="324" r="63" fill="#74d3a0" class="ink" stroke-width="5"/>
         <circle cx="368" cy="306" r="7" fill="#52c389"/><circle cx="410" cy="340" r="5" fill="#52c389"/><circle cx="398" cy="300" r="4" fill="#52c389"/>
         <circle cx="370" cy="318" r="5.5" fill="#2c2622"/><circle cx="406" cy="318" r="5.5" fill="#2c2622"/>
         <path d="M372 336 Q388 350 404 336" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
         <ellipse cx="356" cy="333" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/><ellipse cx="420" cy="333" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/>
-        <circle cx="478" cy="352" r="44" fill="#c6b4f2" class="ink" stroke-width="5"/>
-        <circle cx="466" cy="347" r="5" fill="#2c2622"/><circle cx="490" cy="347" r="5" fill="#2c2622"/>
-        <path d="M468 360 Q478 369 488 360" fill="none" class="ink" stroke-width="4" stroke-linecap="round"/>
-        <ellipse cx="458" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/><ellipse cx="498" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/>
         <path d="M104 360 Q126 354 142 366" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/><circle cx="144" cy="367" r="7" fill="#ff9ec6" class="ink" stroke-width="3"/>
         <path d="M74 306 L87.5 337.4 L121.6 340.5 L95.9 363.1 L103.4 396.5 L74 379 L44.6 396.5 L52.1 363.1 L26.4 340.5 L60.5 337.4 Z" fill="#ff9ec6" class="ink" stroke-width="5" stroke-linejoin="round"/>
         <circle cx="64" cy="352" r="5" fill="#2c2622"/><circle cx="84" cy="352" r="5" fill="#2c2622"/>
@@ -281,27 +206,12 @@
     </div>
   </section>
 
-  <!-- 12. ASK -->
-  <section data-background-color="#2c2622" class="white ink-bg">
-    <div class="stack center">
-      <div class="brandmark" style="color:#fff;"><span class="star">✦</span>oh<span class="wow" style="color:#c6b4f2;">wow</span></div>
-      <h1 style="font-size:2.6em; text-align:center;">Install <span class="mono" style="color:#ffd64d;">/wonder</span>.<br/>Bring your ORCID.</h1>
-      <p class="sub" style="text-align:center; max-width:24em;">Turn tonight's quiet session into the company of people chasing your same question.</p>
-      <p class="mono" style="color:rgba(255,255,255,0.7); font-size:.6em; margin-top:10px;">ohwow.science · made for the ones awake at 2am ✦</p>
-    </div>
-  </section>
-
 </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
 <script>
-  Reveal.initialize({
-    width: 1180, height: 720, margin: 0.055,
-    hash: true, controls: true, progress: true,
-    slideNumber: 'c/t', transition: 'slide', transitionSpeed: 'default',
-    controlsTutorial: false,
-  });
+  Reveal.initialize({ width:1180, height:720, margin:0.055, hash:true, controls:true, progress:true, slideNumber:'c/t', transition:'slide', controlsTutorial:false });
 </script>
 </body>
 </html>
