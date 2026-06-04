@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ohwow science — seed</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css" id="theme" />
+
+<style>
+  :root {
+    --bg:#f4efe4; --card:#fffdf7; --ink:#2c2622; --ink-soft:#6d6258; --ink-faint:#a99c8d;
+    --blue:#7cc6f5; --yellow:#ffd64d; --pink:#ff9ec6; --coral:#ff7d4f; --coral-deep:#ef5a2a;
+    --green:#74d3a0; --green-deep:#2f9b72; --lilac:#c6b4f2; --plum:#8f6ad6;
+    --ob:2.5px; --pop:6px 6px 0 var(--ink); --pop-sm:3px 3px 0 var(--ink);
+  }
+  .reveal { font-family:'Figtree', system-ui, sans-serif; color:var(--ink); font-weight:500; font-size:32px; }
+  .reveal .slides { text-align:left; }
+  .reveal .slides section { height:100%; }
+  .reveal h1, .reveal h2 { font-family:'Figtree', sans-serif; color:var(--ink); font-weight:800; letter-spacing:-0.038em; line-height:1.02; text-transform:none; margin:0; }
+  .reveal h1 { font-size:3.3em; } .reveal h2 { font-size:2.4em; }
+  .reveal p { line-height:1.5; } .reveal strong { font-weight:800; }
+  .reveal .controls { color:var(--ink); } .reveal .progress { color:var(--coral); height:6px; }
+  .mono { font-family:'JetBrains Mono', monospace; }
+
+  .stack { display:flex; flex-direction:column; justify-content:center; height:100%; gap:24px; }
+  .center { text-align:center; align-items:center; }
+  .sub { color:var(--ink-soft); font-size:1.02em; font-weight:500; max-width:20em; }
+  .white .sub { color:rgba(255,255,255,0.92); }
+
+  .chip { display:inline-flex; align-items:center; gap:.5em; align-self:flex-start; font-size:.5em; font-weight:800; letter-spacing:0.16em; text-transform:uppercase;
+          background:var(--card); color:var(--ink); border:var(--ob) solid var(--ink); border-radius:100px; padding:8px 18px; box-shadow:var(--pop-sm); }
+  .chip::before { content:"✦"; color:var(--coral); }
+  .center .chip { align-self:center; }
+  .white .chip { background:rgba(255,255,255,0.16); color:#fff; border-color:#fff; box-shadow:4px 4px 0 rgba(0,0,0,0.18); } .white .chip::before { color:#fff; }
+
+  .brandmark { font-weight:800; letter-spacing:-0.04em; font-size:1.5em; display:inline-flex; align-items:center; gap:.3em; }
+  .brandmark .star { color:var(--coral); } .brandmark .wow { color:var(--plum); }
+  .pop { color:var(--coral-deep); } .white .pop { color:#fff; }
+  .white h1, .white h2, .white p { color:#fff; }
+
+  .squiggle { position:relative; display:inline-block; }
+  .squiggle svg { position:absolute; left:-1%; bottom:-0.16em; width:102%; height:0.3em; overflow:visible; }
+  .squiggle svg path { fill:none; stroke:var(--coral); stroke-width:6; stroke-linecap:round; }
+  .squiggle.green svg path { stroke:var(--green-deep); }
+
+  .steps { display:flex; gap:14px; flex-wrap:wrap; margin-top:8px; }
+  .pill { font-family:'JetBrains Mono', monospace; font-size:.56em; font-weight:700; background:var(--card); border:var(--ob) solid var(--ink); border-radius:100px; padding:9px 18px; box-shadow:var(--pop-sm); }
+  .pill b { color:var(--coral-deep); }
+
+  ul.flat { list-style:none; margin:0; padding:0; display:grid; gap:18px; }
+  ul.flat li { display:flex; gap:16px; align-items:center; font-size:.82em; font-weight:600; }
+  ul.flat li .b { flex-shrink:0; width:46px; height:46px; border-radius:12px; border:var(--ob) solid var(--ink); display:grid; place-items:center; font-weight:800; font-size:.8em; box-shadow:var(--pop-sm); }
+
+  .terminal { background:var(--card); border:var(--ob) solid var(--ink); border-radius:14px; overflow:hidden; box-shadow:var(--pop); max-width:760px; }
+  .term-bar { display:flex; align-items:center; gap:8px; padding:11px 15px; border-bottom:var(--ob) solid var(--ink); background:var(--bg); }
+  .term-bar .d { width:12px; height:12px; border-radius:50%; border:2px solid var(--ink); } .d.r{background:#ff6b5e;}.d.y{background:#ffce4a;}.d.g{background:#46c96e;}
+  .term-bar .title { margin-left:8px; font-family:'JetBrains Mono',monospace; font-size:.46em; color:var(--ink-soft); font-weight:600; }
+  .term-bar .cc { margin-left:auto; font-size:.42em; font-weight:700; color:var(--coral-deep); }
+  .term-body { padding:18px 20px; font-family:'JetBrains Mono', monospace; font-size:.5em; line-height:1.9; color:var(--ink); }
+  .term-body .box { display:inline-block; border:2px solid rgba(44,38,34,.3); border-radius:8px; padding:3px 11px; margin-bottom:6px; }
+  .term-body .pr { color:var(--plum); font-weight:700; } .term-body .cmd { font-weight:600; }
+  .term-body .mc { color:var(--coral-deep); font-weight:700; } .term-body .mg { color:var(--green-deep); font-weight:700; } .term-body .mp { color:var(--plum); font-weight:700; }
+  .term-body .dim { color:var(--ink-faint); } .term-body .wow { color:var(--coral-deep); font-weight:800; }
+
+  .stamp { width:160px; height:160px; }
+  .stamp .ring-spin { transform-box:view-box; transform-origin:64px 64px; animation:spin 22s linear infinite; }
+  .stamp text { font-weight:800; font-size:9.6px; letter-spacing:1.4px; fill:var(--ink); }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .cast { width:100%; max-width:520px; height:auto; overflow:visible; }
+  .cast .ink { stroke:var(--ink); }
+  .row { display:flex; align-items:center; gap:48px; height:100%; }
+  .grow { flex:1; }
+  .foot { position:absolute; bottom:18px; left:42px; font-size:.46em; color:var(--ink-faint); font-weight:600; }
+  .white .foot { color:rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+<div class="reveal">
+<svg width="0" height="0" style="position:absolute"><symbol id="sparkle" viewBox="0 0 24 24"><path d="M12 0c.9 7.6 3.5 10.5 12 12-8.5 1.5-11.1 4.4-12 12-.9-7.6-3.5-10.5-12-12C8.5 10.5 11.1 7.6 12 0Z" fill="currentColor"/></symbol></svg>
+<div class="slides">
+
+  <!-- 1. TITLE -->
+  <section data-background-color="#f4efe4">
+    <div class="row">
+      <div class="stack grow">
+        <div class="brandmark"><span class="star">✦</span>oh<span class="wow">wow</span></div>
+        <h1>You are not<br/><span class="pop squiggle">working alone<svg viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 8C40 3 90 3 150 6s110 4 148 0"/></svg></span>.</h1>
+        <p class="sub">A meeting place for people doing AI for science.</p>
+      </div>
+      <svg class="stamp" viewBox="0 0 128 128">
+        <defs><path id="srng" d="M64,64 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0" fill="none"/></defs>
+        <circle cx="64" cy="64" r="60" fill="#fffdf7" stroke="#2c2622" stroke-width="3"/>
+        <g class="ring-spin"><text><textPath href="#srng">FROM ALONE ✦ TO TOGETHER ✦ </textPath></text></g>
+        <use href="#sparkle" x="46" y="46" width="36" style="color:#ff7d4f"/>
+      </svg>
+    </div>
+    <div class="foot">ohwow science · seed round</div>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section data-background-color="#c6b4f2">
+    <div class="stack">
+      <span class="chip">the problem</span>
+      <h1>The hardest part of frontier work<br/>isn't the math. <span class="pop">It's the silence.</span></h1>
+      <p class="sub" style="max-width:26em;">Push far enough into a question and you're the only person nearby who cares about exactly this. So you chase it alone.</p>
+    </div>
+  </section>
+
+  <!-- 3. SOLUTION -->
+  <section data-background-color="#ff7d4f" class="white">
+    <div class="stack center">
+      <span class="chip">the solution</span>
+      <h1 class="mono">/wonder</h1>
+      <p class="sub center" style="max-width:22em;">One command in Claude Code. It reads your AI session, matches on meaning and ORCID, and opens a room with the handful of people on your exact question.</p>
+      <div class="steps" style="justify-content:center;">
+        <span class="pill"><b>1</b> install</span><span class="pill"><b>2</b> set ORCID</span><span class="pill"><b>3</b> /wonder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. DEMO -->
+  <section data-background-color="#f4efe4">
+    <div class="row">
+      <div class="stack grow" style="max-width:9em;">
+        <span class="chip">in the wild</span>
+        <h2>A blinking cursor,<br/>then your people.</h2>
+      </div>
+      <div class="terminal">
+        <div class="term-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="title">~/research</span><span class="cc">✻ Claude Code</span></div>
+        <div class="term-body">
+          <div class="box"><span class="pr">&gt;</span> <span class="cmd">/wonder</span></div><br/>
+          <span class="mc">⏺</span> Reading your session (142 turns)<br/>
+          <span class="mp">⏺</span> Distilling what you're chasing…<br/>
+          &nbsp;&nbsp;<span class="dim">⎿ topic: low-data protein structure</span><br/>
+          <span class="mg">⏺</span> Signing with ORCID 0000-0001-8713-9213<br/>
+          <span class="mc">⏺</span> curl → ohwow.science/wonder<br/>
+          &nbsp;&nbsp;<span class="dim">⎿ 7 researchers on the same question</span><br/>
+          <span class="mp">⏺</span> <span style="color:var(--plum)">Opening room: protein-folding · low-data</span><br/>
+          <span class="wow">oh, wow — you're not alone in here.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WHY NOW -->
+  <section data-background-color="#7cc6f5">
+    <div class="stack">
+      <span class="chip">why now</span>
+      <h2>Three things just became true.</h2>
+      <ul class="flat" style="margin-top:4px;">
+        <li><span class="b" style="background:#fff">AI</span> Researchers run AI sessions daily — a live signal of what they're working on.</li>
+        <li><span class="b" style="background:#fff">iD</span> ORCID is the near-universal identity layer for science.</li>
+        <li><span class="b" style="background:#fff">≈</span> Embeddings made matching on meaning cheap and good.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. VISION + ASK -->
+  <section data-background-color="#f4efe4">
+    <div class="row">
+      <div class="stack grow">
+        <span class="chip">the ask</span>
+        <h1>From alone<br/><span class="squiggle green">to together.<svg viewBox="0 0 260 12" preserveAspectRatio="none"><path d="M2 8C50 3 110 3 160 6s80 4 98 0"/></svg></span></h1>
+        <p class="sub">Raising a seed round to bring <strong>/wonder</strong> to every researcher doing AI for science.</p>
+        <p class="mono" style="color:var(--ink-faint); font-size:.6em;">ohwow.science · awake at 2am ✦</p>
+      </div>
+      <svg class="cast" viewBox="0 0 540 470" aria-hidden="true">
+        <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe488"/><stop offset="1" stop-color="#ffce4a"/></linearGradient></defs>
+        <path d="M44 422 Q270 410 496 422" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/>
+        <g stroke="#ffce4a" stroke-width="10" stroke-linecap="round">
+          <line x1="362" y1="250" x2="386" y2="250"/><line x1="349.7" y1="296" x2="369" y2="308"/><line x1="316" y1="329.7" x2="328" y2="349"/><line x1="270" y1="342" x2="270" y2="366"/><line x1="224" y1="329.7" x2="212" y2="349"/><line x1="190.3" y1="296" x2="171" y2="308"/><line x1="178" y1="250" x2="154" y2="250"/><line x1="190.3" y1="204" x2="171" y2="192"/><line x1="224" y1="170.3" x2="212" y2="151"/><line x1="270" y1="158" x2="270" y2="134"/><line x1="316" y1="170.3" x2="328" y2="151"/><line x1="349.7" y1="204" x2="369" y2="192"/>
+        </g>
+        <circle cx="270" cy="250" r="80" fill="url(#sg)" class="ink" stroke-width="5"/>
+        <path d="M236 246 q9 8 18 0" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/><path d="M286 246 q9 8 18 0" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M242 266 Q270 292 298 266" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/>
+        <ellipse cx="226" cy="268" rx="11" ry="7" fill="#ff7d4f" opacity="0.5"/><ellipse cx="314" cy="268" rx="11" ry="7" fill="#ff7d4f" opacity="0.5"/>
+        <ellipse cx="158" cy="322" rx="104" ry="27" fill="none" class="ink" stroke-width="5" transform="rotate(-15 158 322)"/>
+        <circle cx="158" cy="322" r="66" fill="#7cc6f5" class="ink" stroke-width="5"/>
+        <circle cx="182" cy="302" r="8" fill="#5bb0ea"/><circle cx="140" cy="342" r="6" fill="#5bb0ea"/>
+        <path d="M104 300 Q86 278 96 258" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/><circle cx="96" cy="256" r="8" fill="#7cc6f5" class="ink" stroke-width="3"/>
+        <circle cx="140" cy="315" r="5.5" fill="#2c2622"/><circle cx="178" cy="315" r="5.5" fill="#2c2622"/>
+        <path d="M144 332 Q159 346 174 332" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
+        <ellipse cx="128" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/><ellipse cx="190" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/>
+        <!-- lilac behind moon -->
+        <circle cx="478" cy="352" r="44" fill="#c6b4f2" class="ink" stroke-width="5"/>
+        <circle cx="466" cy="347" r="5" fill="#2c2622"/><circle cx="490" cy="347" r="5" fill="#2c2622"/>
+        <path d="M468 360 Q478 369 488 360" fill="none" class="ink" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="458" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/><ellipse cx="498" cy="357" rx="7" ry="5" fill="#ff7d4f" opacity="0.4"/>
+        <circle cx="388" cy="324" r="63" fill="#74d3a0" class="ink" stroke-width="5"/>
+        <circle cx="368" cy="306" r="7" fill="#52c389"/><circle cx="410" cy="340" r="5" fill="#52c389"/><circle cx="398" cy="300" r="4" fill="#52c389"/>
+        <circle cx="370" cy="318" r="5.5" fill="#2c2622"/><circle cx="406" cy="318" r="5.5" fill="#2c2622"/>
+        <path d="M372 336 Q388 350 404 336" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
+        <ellipse cx="356" cy="333" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/><ellipse cx="420" cy="333" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/>
+        <path d="M104 360 Q126 354 142 366" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/><circle cx="144" cy="367" r="7" fill="#ff9ec6" class="ink" stroke-width="3"/>
+        <path d="M74 306 L87.5 337.4 L121.6 340.5 L95.9 363.1 L103.4 396.5 L74 379 L44.6 396.5 L52.1 363.1 L26.4 340.5 L60.5 337.4 Z" fill="#ff9ec6" class="ink" stroke-width="5" stroke-linejoin="round"/>
+        <circle cx="64" cy="352" r="5" fill="#2c2622"/><circle cx="84" cy="352" r="5" fill="#2c2622"/>
+        <path d="M66 363 Q74 371 82 363" fill="none" class="ink" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="55" cy="360" rx="7" ry="5" fill="#ef5a2a" opacity="0.45"/><ellipse cx="93" cy="360" rx="7" ry="5" fill="#ef5a2a" opacity="0.45"/>
+      </svg>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ width:1180, height:720, margin:0.055, hash:true, controls:false, progress:true, slideNumber:'c/t', transition:'slide', controlsTutorial:false });
+</script>
+</body>
+</html>
