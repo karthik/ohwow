@@ -3,492 +3,311 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Constellate — you are not working alone</title>
-<meta name="description" content="Summarize your AI-for-science session with a slash command, send it with your ORCID, and step into a room of minds orbiting the same questions. Spark wonder. End the loneliness of working at the frontier." />
+<title>ohwow science — you are not working alone</title>
+<meta name="description" content="Summarize your AI-for-science session with /wonder, send it with your ORCID, and step into a room of minds orbiting the same question. Spark wonder. End the loneliness of working at the frontier." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..800;1,300..700&family=Shantell+Sans:ital,wght@0,300..800;1,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
 <style>
   :root {
-    --ink:        #060912;
-    --ink-2:      #0a0f1d;
-    --surface:    #0e1426;
-    --surface-2:  #131b32;
-    --line:       rgba(160, 180, 230, 0.10);
-    --line-2:     rgba(160, 180, 230, 0.18);
+    /* bright & airy — sky, peach, mint over near-white */
+    --paper:      #fbfcfe;
+    --paper-2:    #ffffff;
+    --card:       #ffffff;
+    --wash-sky:   #eaf4fc;
+    --wash-peach: #fff1ea;
+    --wash-mint:  #e8f8f1;
 
-    --text:       #f1eee6;
-    --text-soft:  #b7bdcf;
-    --text-faint: #6f7790;
+    --ink:        #2a3540;   /* soft slate, never pure black */
+    --ink-soft:   #5d6975;
+    --ink-faint:  #9aa5b1;
+    --line:       rgba(40, 55, 70, 0.10);
+    --line-2:     rgba(40, 55, 70, 0.16);
 
-    --gold:       #ffd27a;   /* the star — individual work, wonder */
-    --gold-deep:  #f4b54a;
-    --aurora:     #8fe6cf;   /* the connection — kindred work     */
-    --aurora-dim: #57b9a4;
-    --violet:     #b3a6ff;   /* rare accent — discovery           */
-
-    --glow-gold:   0 0 60px rgba(255, 210, 122, 0.35);
-    --glow-aurora: 0 0 50px rgba(143, 230, 207, 0.30);
+    --sky:        #2e9fe6;   /* primary — bright, joyful */
+    --sky-deep:   #1d83c8;
+    --sky-soft:   #bfe2f7;
+    --coral:      #ff7a59;   /* warmth */
+    --coral-deep: #f2562f;
+    --coral-soft: #ffd6c9;
+    --mint:       #1fbd97;   /* the connection — kindred work */
+    --mint-deep:  #14a081;
+    --mint-soft:  #c2efe2;
+    --sun:        #ffc94d;   /* a sparkle, used sparingly */
+    --grape:      #8b7bff;
 
     --maxw: 1180px;
     --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow-soft: 0 24px 60px -30px rgba(40, 70, 110, 0.30);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
 
   body {
     font-family: 'Figtree', system-ui, sans-serif;
-    background: var(--ink);
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.55;
     overflow-x: hidden;
     position: relative;
+    background:
+      radial-gradient(110% 80% at 82% -8%, var(--wash-sky) 0%, transparent 50%),
+      radial-gradient(90% 70% at 6% -4%, var(--wash-peach) 0%, transparent 52%),
+      radial-gradient(80% 60% at 50% 108%, var(--wash-mint) 0%, transparent 55%),
+      linear-gradient(180deg, var(--paper-2) 0%, var(--paper) 100%);
+    background-attachment: fixed;
   }
 
   /* ---------- Atmosphere ---------- */
-  #constellation {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
+  #constellation { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.85; }
 
-  .aura {
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: 0.55;
-    z-index: 0;
-    pointer-events: none;
-    mix-blend-mode: screen;
-  }
-  .aura.a {
-    width: 620px; height: 620px;
-    top: -200px; left: -120px;
-    background: radial-gradient(circle, rgba(255,210,122,0.30), transparent 65%);
-  }
-  .aura.b {
-    width: 720px; height: 720px;
-    top: 18%; right: -260px;
-    background: radial-gradient(circle, rgba(143,230,207,0.22), transparent 65%);
-  }
-  .aura.c {
-    width: 560px; height: 560px;
-    bottom: -200px; left: 30%;
-    background: radial-gradient(circle, rgba(179,166,255,0.16), transparent 65%);
-  }
+  .aura { position: fixed; border-radius: 50%; filter: blur(78px); z-index: 0; pointer-events: none; mix-blend-mode: multiply; opacity: 0.7; }
+  .aura.a { width: 520px; height: 520px; top: -150px; right: 8%;  background: radial-gradient(circle, rgba(46,159,230,0.20), transparent 65%); }
+  .aura.b { width: 600px; height: 600px; top: 32%;  left: -200px; background: radial-gradient(circle, rgba(31,189,151,0.16), transparent 65%); }
+  .aura.c { width: 460px; height: 460px; bottom: 6%; right: -130px; background: radial-gradient(circle, rgba(255,122,89,0.16), transparent 65%); }
 
-  /* film grain */
+  /* faint paper grain — airy */
   body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    opacity: 0.16; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
   .wrap { position: relative; z-index: 2; }
   .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
 
   /* ---------- Type ---------- */
-  .eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--aurora);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7em;
-  }
-  .eyebrow::before {
-    content: "";
-    width: 26px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--aurora));
-  }
-
-  h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.04; }
-
+  .display { font-family: 'Shantell Sans', 'Figtree', cursive; font-weight: 700; letter-spacing: -0.005em; line-height: 1.02; }
+  .eyebrow { font-size: 0.74rem; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 700; color: var(--sky-deep); display: inline-flex; align-items: center; gap: 0.65em; }
+  .eyebrow::before { content: "✦"; color: var(--coral); letter-spacing: 0; font-size: 0.9em; }
   .mono { font-family: 'JetBrains Mono', monospace; }
+
+  /* hand-drawn underline */
+  .squiggle { position: relative; display: inline-block; }
+  .squiggle svg { position: absolute; left: -2%; bottom: -0.32em; width: 104%; height: 0.4em; overflow: visible; }
+  .squiggle svg path { fill: none; stroke: var(--coral); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s var(--ease) 0.2s; }
+  .squiggle.in svg path { stroke-dashoffset: 0; }
+  .squiggle.sky svg path { stroke: var(--sky); }
+  .squiggle.mint svg path { stroke: var(--mint); }
 
   /* ---------- Nav ---------- */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 32px;
-    transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease), border-color 0.4s var(--ease);
-    border-bottom: 1px solid transparent;
+    position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100; width: calc(100% - 40px); max-width: 1080px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 11px 12px 11px 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid var(--line); border-radius: 100px;
+    backdrop-filter: blur(16px) saturate(1.4);
+    box-shadow: 0 10px 34px -20px rgba(40,70,110,0.4);
+    transition: box-shadow 0.4s var(--ease), background 0.4s var(--ease);
   }
-  nav.scrolled {
-    background: rgba(6, 9, 18, 0.72);
-    backdrop-filter: blur(18px) saturate(1.2);
-    border-bottom: 1px solid var(--line);
-  }
-  .brand {
-    display: inline-flex; align-items: center; gap: 0.6em;
-    font-weight: 700; font-size: 1.06rem; letter-spacing: -0.01em;
-    color: var(--text);
-  }
-  .brand .star {
-    color: var(--gold);
-    filter: drop-shadow(0 0 8px rgba(255,210,122,0.7));
-    animation: twinkle 4s ease-in-out infinite;
-  }
-  @keyframes twinkle {
-    0%,100% { opacity: 1; transform: scale(1) rotate(0deg); }
-    50%     { opacity: 0.6; transform: scale(0.85) rotate(180deg); }
-  }
-  .nav-links { display: flex; align-items: center; gap: 34px; }
-  .nav-links a {
-    color: var(--text-soft); text-decoration: none; font-size: 0.92rem; font-weight: 500;
-    transition: color 0.25s var(--ease); position: relative;
-  }
-  .nav-links a:not(.btn)::after {
-    content: ""; position: absolute; left: 0; bottom: -5px; height: 1px; width: 0;
-    background: var(--aurora); transition: width 0.3s var(--ease);
-  }
-  .nav-links a:not(.btn):hover { color: var(--text); }
-  .nav-links a:not(.btn):hover::after { width: 100%; }
+  nav.scrolled { box-shadow: 0 16px 44px -20px rgba(40,70,110,0.5); background: rgba(255,255,255,0.9); }
+  .brand { display: inline-flex; align-items: center; gap: 0.42em; font-size: 1.42rem; color: var(--ink); text-decoration: none; }
+  .brand .star { color: var(--coral); display: inline-block; animation: twinkle 5s ease-in-out infinite; }
+  .brand .wow { color: var(--sky); }
+  @keyframes twinkle { 0%,100% { transform: rotate(0) scale(1); opacity: 1; } 50% { transform: rotate(180deg) scale(0.8); opacity: 0.7; } }
+  .nav-links { display: flex; align-items: center; gap: 30px; }
+  .nav-links a:not(.btn) { color: var(--ink-soft); text-decoration: none; font-size: 0.96rem; font-weight: 500; position: relative; transition: color 0.25s var(--ease); }
+  .nav-links a:not(.btn)::after { content:""; position:absolute; left:0; bottom:-5px; height:2px; width:0; background: var(--sky); border-radius: 2px; transition: width 0.3s var(--ease); }
+  .nav-links a:not(.btn):hover { color: var(--ink); } .nav-links a:not(.btn):hover::after { width: 100%; }
 
-  .btn {
-    display: inline-flex; align-items: center; gap: 0.5em;
-    font-weight: 600; font-size: 0.92rem; text-decoration: none;
-    padding: 11px 20px; border-radius: 100px; cursor: pointer; border: none;
-    transition: transform 0.25s var(--ease), box-shadow 0.3s var(--ease), background 0.3s var(--ease);
-  }
-  .btn-primary {
-    background: linear-gradient(180deg, var(--gold), var(--gold-deep));
-    color: #2b1d05;
-    box-shadow: 0 8px 30px rgba(255,210,122,0.25), inset 0 1px 0 rgba(255,255,255,0.4);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(255,210,122,0.4), inset 0 1px 0 rgba(255,255,255,0.5); }
-  .btn-ghost {
-    background: rgba(255,255,255,0.04);
-    color: var(--text);
-    border: 1px solid var(--line-2);
-  }
-  .btn-ghost:hover { background: rgba(255,255,255,0.08); transform: translateY(-2px); }
+  .btn { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 600; font-size: 0.98rem; text-decoration: none; padding: 13px 24px; border-radius: 100px; cursor: pointer; border: none; transition: transform 0.25s var(--ease), box-shadow 0.3s var(--ease), background 0.25s var(--ease); font-family: 'Figtree', sans-serif; }
+  .btn-primary { background: linear-gradient(180deg, #46aef0, var(--sky)); color: #fff; box-shadow: 0 10px 26px -8px rgba(46,159,230,0.55), inset 0 1px 0 rgba(255,255,255,0.4); }
+  .btn-primary:hover { transform: translateY(-2px) rotate(-0.5deg); box-shadow: 0 16px 34px -8px rgba(46,159,230,0.7), inset 0 1px 0 rgba(255,255,255,0.45); }
+  .btn-coral { background: linear-gradient(180deg, #ff8e70, var(--coral)); color: #fff; box-shadow: 0 10px 24px -10px rgba(255,122,89,0.65); }
+  .btn-coral:hover { transform: translateY(-2px) rotate(0.5deg); }
+  .btn-ghost { background: rgba(255,255,255,0.65); color: var(--ink); border: 1.5px solid var(--line-2); }
+  .btn-ghost:hover { transform: translateY(-2px); background: #fff; border-color: var(--sky); }
 
   /* ---------- Hero ---------- */
-  header.hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 160px 0 100px;
-    position: relative;
-  }
-  .hero-inner { max-width: 920px; }
-  .hero h1 {
-    font-size: clamp(2.8rem, 7.4vw, 6.2rem);
-    font-weight: 600;
-    margin: 26px 0 0;
-  }
-  .hero h1 .grad {
-    background: linear-gradient(105deg, var(--gold) 0%, #fff4dd 35%, var(--aurora) 80%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero h1 em {
-    font-style: italic; font-weight: 400; color: var(--text-soft);
-  }
-  .hero p.lede {
-    font-size: clamp(1.08rem, 1.7vw, 1.32rem);
-    color: var(--text-soft);
-    max-width: 620px;
-    margin: 32px 0 0;
-    font-weight: 400;
-  }
-  .hero-cta { display: flex; gap: 14px; margin-top: 42px; flex-wrap: wrap; align-items: center; }
-  .hero-note { color: var(--text-faint); font-size: 0.86rem; display: inline-flex; align-items: center; gap: 0.5em; }
-  .hero-note .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--aurora); box-shadow: 0 0 10px var(--aurora); animation: pulse 2.4s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+  header.hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 170px 0 90px; position: relative; }
+  .hero-inner { max-width: 940px; position: relative; }
+  .hero h1 { font-size: clamp(3rem, 8.2vw, 6.6rem); margin: 22px 0 0; color: var(--ink); }
+  .hero h1 .sky-t { color: var(--sky-deep); }
+  .hero p.lede { font-size: clamp(1.1rem, 1.7vw, 1.34rem); color: var(--ink-soft); max-width: 600px; margin: 30px 0 0; font-weight: 400; }
+  .hero-cta { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; align-items: center; }
+  .hero-note { color: var(--ink-faint); font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.55em; font-weight: 500; }
+  .hero-note .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: ping 2.4s ease-out infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(31,189,151,0.5);} 70%,100% { box-shadow: 0 0 0 9px rgba(31,189,151,0);} }
 
-  /* slash command pill in hero */
-  .cmd-pill {
-    display: inline-flex; align-items: center; gap: 12px;
-    margin-top: 8px;
-    padding: 9px 9px 9px 18px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--line-2);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.92rem;
-    color: var(--text);
-  }
-  .cmd-pill .slash { color: var(--aurora); }
-  .cmd-pill .tag { color: var(--text-faint); }
-  .cmd-pill .run {
-    background: var(--surface-2); border: 1px solid var(--line-2);
-    color: var(--text-soft); border-radius: 100px; padding: 5px 12px; font-size: 0.78rem;
-    display: inline-flex; gap: 0.5em; align-items: center;
-  }
+  .cmd-pill { display: inline-flex; align-items: center; gap: 12px; margin-top: 26px; padding: 10px 10px 10px 20px; border-radius: 100px; background: #fff; border: 1.5px solid var(--line-2); box-shadow: 0 8px 22px -14px rgba(40,70,110,0.4); font-family: 'JetBrains Mono', monospace; font-size: 0.94rem; color: var(--ink); }
+  .cmd-pill .slash { color: var(--mint-deep); font-weight: 700; }
+  .cmd-pill .tag { color: var(--ink-faint); }
+  .cmd-pill .run { background: var(--sky); color: #fff; border-radius: 100px; padding: 6px 13px; font-size: 0.78rem; display: inline-flex; gap: 0.4em; }
 
-  /* scroll cue */
-  .scroll-cue {
-    position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%);
-    color: var(--text-faint); font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-  }
-  .scroll-cue .rail { width: 1px; height: 46px; background: linear-gradient(var(--text-faint), transparent); position: relative; overflow: hidden; }
-  .scroll-cue .rail::after { content:""; position:absolute; top:-50%; left:0; width:1px; height:50%; background: var(--aurora); animation: drop 2.2s var(--ease) infinite; }
+  .spark { position: absolute; pointer-events: none; opacity: 0; animation: rise 0.9s var(--ease) forwards, float 6s ease-in-out infinite; }
+  .spark.s1 { top: 6%;  right: 14%; width: 30px; color: var(--sun); animation-delay: 0.7s, 0.7s; }
+  .spark.s2 { top: 30%; right: 4%;  width: 46px; color: var(--mint); animation-delay: 0.9s, 1.2s; }
+  .spark.s3 { top: 64%; right: 22%; width: 22px; color: var(--coral); animation-delay: 1.1s, 0.4s; }
+  .spark.s4 { top: 2%;  left: 40%;  width: 18px; color: var(--sky); animation-delay: 1.0s, 0.9s; }
+  @keyframes float { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(8deg); } }
+
+  .scroll-cue { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); color: var(--ink-faint); font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 600; }
+  .scroll-cue .rail { width: 2px; height: 42px; background: linear-gradient(var(--ink-faint), transparent); border-radius: 2px; position: relative; overflow: hidden; }
+  .scroll-cue .rail::after { content:""; position:absolute; top:-50%; left:0; width:2px; height:50%; background: var(--sky); animation: drop 2.2s var(--ease) infinite; }
   @keyframes drop { 0% { top:-50%; } 100% { top:100%; } }
 
   /* ---------- Sections ---------- */
-  section { padding: 130px 0; position: relative; }
-  .section-head { max-width: 720px; margin-bottom: 70px; }
-  .section-head h2 {
-    font-size: clamp(2rem, 4.4vw, 3.3rem);
-    margin: 20px 0 0;
-  }
-  .section-head p {
-    color: var(--text-soft); font-size: 1.12rem; margin-top: 22px; max-width: 600px; font-weight: 400;
-  }
+  section { padding: 120px 0; position: relative; }
+  .section-head { max-width: 720px; margin-bottom: 64px; }
+  .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 18px 0 0; color: var(--ink); }
+  .section-head p { color: var(--ink-soft); font-size: 1.14rem; margin-top: 20px; max-width: 580px; font-weight: 400; }
 
-  /* ---------- How it works (the flow) ---------- */
-  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .step {
-    position: relative;
-    background: linear-gradient(180deg, var(--surface), var(--ink-2));
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 32px 28px 30px;
-    overflow: hidden;
-    transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
-  }
-  .step::before {
-    content: ""; position: absolute; inset: 0;
-    background: radial-gradient(420px circle at var(--mx,50%) var(--my,0%), rgba(143,230,207,0.10), transparent 60%);
-    opacity: 0; transition: opacity 0.5s var(--ease);
-  }
-  .step:hover { transform: translateY(-6px); border-color: var(--line-2); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8); }
-  .step:hover::before { opacity: 1; }
-  .step .num {
-    font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--text-faint);
-    letter-spacing: 0.1em;
-  }
-  .step .ic {
-    width: 46px; height: 46px; border-radius: 13px; margin: 18px 0 22px;
-    display: grid; place-items: center;
-    background: rgba(143,230,207,0.08); border: 1px solid rgba(143,230,207,0.2);
-    color: var(--aurora);
-  }
-  .step:nth-child(1) .ic { background: rgba(255,210,122,0.08); border-color: rgba(255,210,122,0.22); color: var(--gold); }
-  .step:nth-child(3) .ic { background: rgba(179,166,255,0.08); border-color: rgba(179,166,255,0.22); color: var(--violet); }
-  .step h3 { font-size: 1.32rem; margin-bottom: 12px; }
-  .step p { color: var(--text-soft); font-size: 0.98rem; font-weight: 400; }
-  .step .code {
-    margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
-    background: var(--ink); border: 1px solid var(--line); border-radius: 11px; padding: 14px 16px;
-    color: var(--text-soft); overflow-x: auto; line-height: 1.7;
-  }
-  .code .k { color: var(--aurora); }
-  .code .s { color: var(--gold); }
-  .code .c { color: var(--text-faint); }
+  /* ---------- How it works ---------- */
+  .flow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .step { position: relative; background: var(--card); border: 1.5px solid var(--line); border-radius: 26px; padding: 30px 28px; overflow: hidden; box-shadow: var(--shadow-soft); transition: transform 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+  .step:hover { transform: translateY(-6px) rotate(-0.4deg); border-color: var(--sky); box-shadow: 0 34px 70px -32px rgba(40,70,110,0.4); }
+  .step .badge { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--sky); color: #fff; font-weight: 700; font-size: 1.05rem; font-family: 'Shantell Sans', sans-serif; box-shadow: 0 6px 14px -6px rgba(46,159,230,0.7); }
+  .step:nth-child(2) .badge { background: var(--mint); box-shadow: 0 6px 14px -6px rgba(31,189,151,0.7); }
+  .step:nth-child(3) .badge { background: var(--coral); box-shadow: 0 6px 14px -6px rgba(255,122,89,0.7); }
+  .step .num { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--ink-faint); letter-spacing: 0.12em; margin-top: 18px; display: block; }
+  .step h3 { font-family: 'Shantell Sans', sans-serif; font-size: 1.5rem; margin: 6px 0 12px; color: var(--ink); }
+  .step p { color: var(--ink-soft); font-size: 0.99rem; font-weight: 400; }
+  .step .code { margin-top: 20px; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; background: var(--wash-sky); border: 1px solid var(--line); border-radius: 13px; padding: 14px 16px; color: var(--ink-soft); overflow-x: auto; line-height: 1.7; }
+  .code .k { color: var(--mint-deep); } .code .s { color: var(--coral-deep); } .code .c { color: var(--ink-faint); } .code .v { color: var(--grape); }
 
-  /* ---------- Terminal demo ---------- */
-  .terminal-block { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
-  .terminal {
-    background: var(--ink-2);
-    border: 1px solid var(--line-2);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 40px 90px -40px rgba(0,0,0,0.9);
-  }
-  .term-bar {
-    display: flex; align-items: center; gap: 8px;
-    padding: 13px 16px; border-bottom: 1px solid var(--line);
-    background: rgba(255,255,255,0.02);
-  }
+  /* ---------- Terminal demo (light & airy) ---------- */
+  .terminal-block { display: grid; grid-template-columns: 1.05fr 1fr; gap: 46px; align-items: center; }
+  .terminal { background: #fff; border: 1.5px solid var(--line-2); border-radius: 18px; overflow: hidden; box-shadow: 0 50px 100px -44px rgba(40,70,110,0.45); transform: rotate(-0.6deg); }
+  .term-bar { display: flex; align-items: center; gap: 8px; padding: 13px 16px; border-bottom: 1.5px solid var(--line); background: var(--wash-sky); }
   .term-bar .dotrow { display: flex; gap: 7px; }
-  .term-bar .d { width: 11px; height: 11px; border-radius: 50%; }
-  .term-bar .d.r { background: #ff5f57; } .term-bar .d.y { background: #febc2e; } .term-bar .d.g { background: #28c840; }
-  .term-bar .title { margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--text-faint); }
-  .term-body {
-    padding: 22px 22px 26px; font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.85;
-    min-height: 340px;
-  }
+  .term-bar .d { width: 11px; height: 11px; border-radius: 50%; } .term-bar .d.r{background:#ff6b5e;} .term-bar .d.y{background:#ffc94d;} .term-bar .d.g{background:#33c98a;}
+  .term-bar .title { margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; color: var(--ink-faint); }
+  .term-body { padding: 22px 22px 26px; font-family: 'JetBrains Mono', monospace; font-size: 0.86rem; line-height: 1.85; min-height: 350px; color: var(--ink-soft); }
   .term-body .ln { white-space: pre-wrap; }
-  .term-body .prompt { color: var(--aurora); }
-  .term-body .cmd { color: var(--text); }
-  .term-body .out { color: var(--text-soft); }
-  .term-body .ok { color: var(--gold); }
-  .term-body .dim { color: var(--text-faint); }
-  .term-body .room { color: var(--violet); }
-  .caret { display: inline-block; width: 9px; height: 1.05em; background: var(--aurora); vertical-align: text-bottom; animation: blink 1s steps(2) infinite; }
+  .term-body .prompt { color: var(--sky-deep); } .term-body .cmd { color: var(--ink); font-weight: 500; } .term-body .out { color: var(--ink-soft); }
+  .term-body .ok { color: var(--mint-deep); } .term-body .dim { color: var(--ink-faint); } .term-body .room { color: var(--grape); }
+  .caret { display: inline-block; width: 9px; height: 1.05em; background: var(--sky); vertical-align: text-bottom; animation: blink 1s steps(2) infinite; }
   @keyframes blink { 50% { opacity: 0; } }
 
-  .terminal-copy h3 { font-size: clamp(1.6rem, 3vw, 2.3rem); margin-bottom: 18px; }
-  .terminal-copy p { color: var(--text-soft); font-size: 1.05rem; margin-bottom: 16px; font-weight: 400; }
+  .terminal-copy h3 { font-family: 'Shantell Sans', sans-serif; font-size: clamp(1.7rem, 3vw, 2.4rem); margin-bottom: 18px; color: var(--ink); }
+  .terminal-copy p { color: var(--ink-soft); font-size: 1.06rem; margin-bottom: 16px; font-weight: 400; }
   .terminal-copy ul { list-style: none; margin-top: 24px; display: grid; gap: 14px; }
-  .terminal-copy li { display: flex; gap: 12px; color: var(--text-soft); font-size: 0.98rem; }
-  .terminal-copy li svg { flex-shrink: 0; margin-top: 3px; color: var(--aurora); }
+  .terminal-copy li { display: flex; gap: 12px; color: var(--ink-soft); font-size: 1rem; align-items: flex-start; }
+  .terminal-copy li .chk { flex-shrink: 0; margin-top: 2px; width: 22px; height: 22px; border-radius: 50%; background: var(--mint-soft); color: var(--mint-deep); display: grid; place-items: center; }
 
   /* ---------- Rooms ---------- */
   .rooms { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-  .room-card {
-    position: relative;
-    border-radius: 20px; padding: 28px 26px 26px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.025), transparent);
-    border: 1px solid var(--line);
-    overflow: hidden;
-    transition: transform 0.5s var(--ease), border-color 0.5s var(--ease);
-  }
-  .room-card:hover { transform: translateY(-5px); border-color: var(--line-2); }
-  .room-card .ping { position: absolute; top: 24px; right: 24px; display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; color: var(--aurora); }
-  .room-card .ping .d { width: 7px; height: 7px; border-radius: 50%; background: var(--aurora); box-shadow: 0 0 10px var(--aurora); animation: pulse 2s infinite; }
-  .room-card .topic { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--text-faint); letter-spacing: 0.06em; }
-  .room-card h3 { font-size: 1.24rem; margin: 12px 0 14px; max-width: 90%; }
-  .room-card p { color: var(--text-soft); font-size: 0.92rem; font-weight: 400; }
+  .room-card { position: relative; border-radius: 24px; padding: 28px 26px 26px; background: var(--card); border: 1.5px solid var(--line); box-shadow: var(--shadow-soft); overflow: hidden; transition: transform 0.5s var(--ease), border-color 0.5s var(--ease); }
+  .room-card:hover { transform: translateY(-5px) rotate(0.4deg); border-color: var(--mint); }
+  .room-card .ping { position: absolute; top: 26px; right: 24px; display: inline-flex; align-items: center; gap: 7px; font-size: 0.74rem; color: var(--mint-deep); font-weight: 600; }
+  .room-card .ping .d { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); animation: ping 2s infinite; }
+  .room-card .topic { font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .room-card h3 { font-family: 'Shantell Sans', sans-serif; font-size: 1.36rem; margin: 10px 0 12px; max-width: 88%; color: var(--ink); line-height: 1.12; }
+  .room-card p { color: var(--ink-soft); font-size: 0.94rem; font-weight: 400; }
   .avatars { display: flex; margin-top: 22px; align-items: center; }
-  .avatars .av {
-    width: 34px; height: 34px; border-radius: 50%; margin-left: -9px;
-    border: 2px solid var(--ink-2); display: grid; place-items: center;
-    font-size: 0.72rem; font-weight: 700; color: #10131f;
-  }
+  .avatars .av { width: 36px; height: 36px; border-radius: 50%; margin-left: -10px; border: 2.5px solid var(--card); display: grid; place-items: center; font-size: 0.74rem; font-weight: 700; color: #fff; }
   .avatars .av:first-child { margin-left: 0; }
-  .avatars .more { margin-left: 12px; font-size: 0.82rem; color: var(--text-faint); }
+  .avatars .more { margin-left: 12px; font-size: 0.84rem; color: var(--ink-faint); font-weight: 500; }
 
-  /* ---------- Loneliness / manifesto ---------- */
+  /* ---------- Manifesto ---------- */
   .manifesto { text-align: center; }
-  .manifesto .big {
-    font-size: clamp(1.9rem, 4.6vw, 3.6rem);
-    font-weight: 500; letter-spacing: -0.025em; line-height: 1.18;
-    max-width: 980px; margin: 0 auto;
-  }
-  .manifesto .big span { color: var(--text-faint); }
-  .manifesto .big .hl {
-    background: linear-gradient(105deg, var(--gold), var(--aurora));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .manifesto .sign { margin-top: 40px; color: var(--text-faint); font-size: 0.95rem; }
+  .manifesto .big { font-family: 'Shantell Sans', sans-serif; font-size: clamp(2rem, 4.8vw, 3.7rem); font-weight: 600; line-height: 1.16; max-width: 980px; margin: 26px auto 0; color: var(--ink); }
+  .manifesto .big span { color: var(--ink-faint); }
+  .manifesto .big .hl { color: var(--coral-deep); }
+  .manifesto .sign { margin-top: 36px; color: var(--ink-faint); font-size: 1rem; font-weight: 500; }
 
-  /* stats */
-  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 90px; }
-  .stat {
-    text-align: center; padding: 36px 20px; border-radius: 18px;
-    border: 1px solid var(--line); background: rgba(255,255,255,0.015);
-  }
-  .stat .n {
-    font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em;
-    background: linear-gradient(180deg, var(--text), var(--text-faint));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .stat .l { color: var(--text-soft); font-size: 0.94rem; margin-top: 6px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 84px; }
+  .stat { text-align: center; padding: 36px 22px; border-radius: 22px; border: 1.5px solid var(--line); background: var(--card); box-shadow: var(--shadow-soft); }
+  .stat .n { font-family: 'Shantell Sans', sans-serif; font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; color: var(--sky-deep); }
+  .stat:nth-child(2) .n { color: var(--mint-deep); } .stat:nth-child(3) .n { color: var(--coral-deep); }
+  .stat .l { color: var(--ink-soft); font-size: 0.96rem; margin-top: 6px; }
 
   /* ---------- CTA ---------- */
-  .cta-band {
-    text-align: center;
-    border-radius: 32px;
-    padding: 80px 40px;
+  .cta-band { text-align: center; border-radius: 36px; padding: 84px 40px; position: relative; overflow: hidden;
     background:
-      radial-gradient(800px circle at 50% 0%, rgba(255,210,122,0.12), transparent 55%),
-      radial-gradient(700px circle at 50% 120%, rgba(143,230,207,0.12), transparent 55%),
-      var(--surface);
-    border: 1px solid var(--line-2);
-    position: relative; overflow: hidden;
-  }
-  .cta-band h2 { font-size: clamp(2.1rem, 5vw, 3.6rem); }
-  .cta-band p { color: var(--text-soft); font-size: 1.12rem; max-width: 520px; margin: 22px auto 36px; font-weight: 400; }
-  .cta-band .hero-cta { justify-content: center; }
+      radial-gradient(680px circle at 50% -10%, rgba(70,174,240,0.32), transparent 55%),
+      radial-gradient(620px circle at 82% 120%, rgba(255,122,89,0.26), transparent 55%),
+      radial-gradient(620px circle at 14% 120%, rgba(31,189,151,0.24), transparent 55%),
+      linear-gradient(180deg, #ffffff, #f3faff);
+    border: 1.5px solid var(--line-2); box-shadow: 0 40px 90px -44px rgba(40,90,140,0.4); }
+  .cta-band h2 { font-family: 'Shantell Sans', sans-serif; font-size: clamp(2.2rem, 5.4vw, 4rem); color: var(--ink); }
+  .cta-band p { color: var(--ink-soft); font-size: 1.16rem; max-width: 540px; margin: 22px auto 36px; font-weight: 400; }
+  .cta-band .hero-cta { justify-content: center; } .cta-band .cmd-pill { margin-top: 30px; }
 
   /* ---------- Footer ---------- */
-  footer { padding: 70px 0 50px; border-top: 1px solid var(--line); margin-top: 130px; }
+  footer { padding: 70px 0 50px; border-top: 1.5px solid var(--line); margin-top: 110px; }
   .foot-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
   .foot-grid .lead { max-width: 320px; }
-  .foot-grid .lead p { color: var(--text-faint); font-size: 0.9rem; margin-top: 14px; }
-  .foot-cols { display: flex; gap: 70px; flex-wrap: wrap; }
-  .foot-col h4 { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; font-weight: 600; }
-  .foot-col a { display: block; color: var(--text-soft); text-decoration: none; font-size: 0.92rem; margin-bottom: 11px; transition: color 0.2s; }
-  .foot-col a:hover { color: var(--text); }
-  .foot-bottom { margin-top: 56px; display: flex; justify-content: space-between; align-items: center; color: var(--text-faint); font-size: 0.84rem; flex-wrap: wrap; gap: 16px; }
+  .foot-grid .lead p { color: var(--ink-faint); font-size: 0.92rem; margin-top: 14px; }
+  .foot-cols { display: flex; gap: 64px; flex-wrap: wrap; }
+  .foot-col h4 { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 16px; font-weight: 700; }
+  .foot-col a { display: block; color: var(--ink-soft); text-decoration: none; font-size: 0.94rem; margin-bottom: 11px; transition: color 0.2s; }
+  .foot-col a:hover { color: var(--sky-deep); }
+  .foot-bottom { margin-top: 54px; display: flex; justify-content: space-between; align-items: center; color: var(--ink-faint); font-size: 0.86rem; flex-wrap: wrap; gap: 16px; }
 
-  /* ---------- Reveal animation ---------- */
+  /* ---------- Reveal ---------- */
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
   .reveal.in { opacity: 1; transform: none; }
   [data-stagger] > * { opacity: 0; transform: translateY(26px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
   [data-stagger].in > * { opacity: 1; transform: none; }
-  [data-stagger].in > *:nth-child(1) { transition-delay: 0.05s; }
-  [data-stagger].in > *:nth-child(2) { transition-delay: 0.15s; }
-  [data-stagger].in > *:nth-child(3) { transition-delay: 0.25s; }
-  [data-stagger].in > *:nth-child(4) { transition-delay: 0.35s; }
+  [data-stagger].in > *:nth-child(1){transition-delay:.05s;} [data-stagger].in > *:nth-child(2){transition-delay:.13s;}
+  [data-stagger].in > *:nth-child(3){transition-delay:.21s;} [data-stagger].in > *:nth-child(4){transition-delay:.29s;}
+  [data-stagger].in > *:nth-child(5){transition-delay:.37s;} [data-stagger].in > *:nth-child(6){transition-delay:.45s;}
 
-  /* hero load animation */
   .hero .anim { opacity: 0; transform: translateY(30px); animation: rise 1s var(--ease) forwards; }
-  .hero .anim.d1 { animation-delay: 0.1s; }
-  .hero .anim.d2 { animation-delay: 0.25s; }
-  .hero .anim.d3 { animation-delay: 0.4s; }
-  .hero .anim.d4 { animation-delay: 0.55s; }
-  .hero .anim.d5 { animation-delay: 0.7s; }
+  .hero .anim.d1{animation-delay:.1s;} .hero .anim.d2{animation-delay:.24s;} .hero .anim.d3{animation-delay:.4s;}
+  .hero .anim.d4{animation-delay:.56s;} .hero .anim.d5{animation-delay:.72s;}
   @keyframes rise { to { opacity: 1; transform: none; } }
 
-  /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
     .flow, .rooms, .stats { grid-template-columns: 1fr; }
     .terminal-block { grid-template-columns: 1fr; }
     .nav-links a:not(.btn) { display: none; }
     .foot-bottom { flex-direction: column; align-items: flex-start; }
   }
-  @media (max-width: 560px) {
-    .container { padding: 0 20px; }
-    nav { padding: 16px 20px; }
-    section { padding: 90px 0; }
-    .cmd-pill { flex-wrap: wrap; }
-  }
-
+  @media (max-width: 560px) { .container { padding: 0 20px; } nav { padding: 9px 10px 9px 18px; } section { padding: 84px 0; } .cmd-pill { flex-wrap: wrap; } .brand { font-size: 1.24rem; } }
   @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
-    .reveal, [data-stagger] > *, .hero .anim { opacity: 1; transform: none; }
+    *, *::after, *::before { animation: none !important; transition-duration: 0.01ms !important; }
+    .reveal, [data-stagger] > *, .hero .anim, .spark { opacity: 1; transform: none; }
+    .squiggle svg path { stroke-dashoffset: 0; }
   }
 </style>
 </head>
 <body>
 
 <canvas id="constellation"></canvas>
-<div class="aura a"></div>
-<div class="aura b"></div>
-<div class="aura c"></div>
+<div class="aura a"></div><div class="aura b"></div><div class="aura c"></div>
+
+<svg width="0" height="0" style="position:absolute"><symbol id="sparkle" viewBox="0 0 24 24"><path d="M12 0c.9 7.6 3.5 10.5 12 12-8.5 1.5-11.1 4.4-12 12-.9-7.6-3.5-10.5-12-12C8.5 10.5 11.1 7.6 12 0Z" fill="currentColor"/></symbol></svg>
 
 <div class="wrap">
 
   <!-- NAV -->
   <nav id="nav">
-    <a href="#top" class="brand"><span class="star">✦</span> Constellate</a>
+    <a href="#top" class="brand display"><span class="star">✦</span>oh<span class="wow">wow</span></a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#rooms">Rooms</a>
       <a href="#why">Why</a>
-      <a href="#start" class="btn btn-primary">Enter a room →</a>
+      <a href="#start" class="btn btn-coral">Enter a room</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <header class="hero" id="top">
+    <svg class="spark s1"><use href="#sparkle"/></svg>
+    <svg class="spark s2"><use href="#sparkle"/></svg>
+    <svg class="spark s3"><use href="#sparkle"/></svg>
+    <svg class="spark s4"><use href="#sparkle"/></svg>
     <div class="container hero-inner">
-      <span class="eyebrow anim d1">A gathering place for AI&nbsp;·&nbsp;Science</span>
-      <h1>
-        <span class="anim d2 grad">You are not</span><br />
-        <span class="anim d2 grad">working alone.</span>
+      <span class="eyebrow anim d1">ohwow science&nbsp;·&nbsp;AI at the frontier</span>
+      <h1 class="display anim d2">
+        You are not<br />
+        <span class="sky-t squiggle sky">working alone<svg viewBox="0 0 300 12" preserveAspectRatio="none"><path d="M2 8C40 3 90 3 150 6s110 4 148 0" /></svg></span>.
       </h1>
       <p class="lede anim d3">
-        At the frontier, the work is quiet and the room is empty. Constellate turns a single
-        AI session into a star — and draws luminous lines to the minds orbiting your same question.
+        At the frontier, the work is quiet and the room is empty. ohwow turns a single
+        AI session into a star — and draws bright lines to the minds orbiting your same question.
       </p>
 
-      <div class="anim d4" style="margin-top:30px;">
-        <span class="cmd-pill mono">
-          <span><span class="slash">/</span>constellate <span class="tag">--orcid you</span></span>
-          <span class="run">↵ run</span>
-        </span>
-      </div>
+      <div class="anim d4"><span class="cmd-pill mono">
+        <span><span class="slash">/</span>wonder <span class="tag">--orcid you</span></span>
+        <span class="run">↵ run</span>
+      </span></div>
 
       <div class="hero-cta anim d5">
         <a href="#start" class="btn btn-primary">Find your constellation</a>
@@ -496,10 +315,7 @@
         <span class="hero-note"><span class="dot"></span> 3,418 researchers in rooms right now</span>
       </div>
     </div>
-    <div class="scroll-cue anim d5">
-      <span>scroll</span>
-      <span class="rail"></span>
-    </div>
+    <div class="scroll-cue anim d5"><span>scroll</span><span class="rail"></span></div>
   </header>
 
   <!-- HOW IT WORKS -->
@@ -507,65 +323,55 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">The ritual · three moves</span>
-        <h2>One command. Then you’re not alone.</h2>
+        <h2 class="display">One word. <span class="squiggle">Then you’re not alone.<svg viewBox="0 0 460 12" preserveAspectRatio="none"><path d="M2 8C70 3 150 3 230 6s160 4 228 0"/></svg></span></h2>
         <p>No new app to babysit. It lives where you already work — your terminal, mid-thought, mid-session.</p>
       </div>
 
       <div class="flow" data-stagger>
-        <article class="step tilt">
-          <span class="num mono">01 / SUMMARIZE</span>
-          <div class="ic">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h7" stroke-linecap="round"/><circle cx="19" cy="16" r="3"/></svg>
-          </div>
-          <h3>Run the slash command</h3>
-          <p>At any moment in your session, call <span class="mono" style="color:var(--aurora)">/constellate</span>. It reads the whole thread and distills what you’re actually chasing.</p>
-          <div class="code mono"><span class="c"># in your session</span><br /><span class="k">/</span>constellate</div>
+        <article class="step">
+          <div class="badge">1</div>
+          <span class="num mono">SUMMARIZE</span>
+          <h3>Type one word</h3>
+          <p>At any moment, run <span class="mono" style="color:var(--mint-deep)">/wonder</span>. It reads the whole session and distills what you’re actually chasing.</p>
+          <div class="code mono"><span class="c"># in your session</span><br /><span class="k">/</span>wonder</div>
         </article>
 
-        <article class="step tilt">
-          <span class="num mono">02 / SEND</span>
-          <div class="ic">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linejoin="round"/></svg>
-          </div>
+        <article class="step">
+          <div class="badge">2</div>
+          <span class="num mono">SEND</span>
           <h3>It curls with your ORCID</h3>
-          <p>The summary and your ORCID iD travel together — your identity as a researcher, not just a username. Embedded, never stored as plain text.</p>
-          <div class="code mono"><span class="k">curl</span> constellate.science/match \<br />&nbsp;&nbsp;-d <span class="s">summary</span>=… \<br />&nbsp;&nbsp;-d <span class="s">orcid</span>=0000-0002-…</div>
+          <p>The summary and your ORCID iD travel together — your identity as a researcher, not just a handle.</p>
+          <div class="code mono"><span class="k">curl</span> ohwow.science/wonder \<br />&nbsp;&nbsp;-d <span class="s">summary</span>=… \<br />&nbsp;&nbsp;-d <span class="s">orcid</span>=0000-0002-…</div>
         </article>
 
-        <article class="step tilt">
-          <span class="num mono">03 / ENTER</span>
-          <div class="ic">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
+        <article class="step">
+          <div class="badge">3</div>
+          <span class="num mono">ENTER</span>
           <h3>Step into the room</h3>
-          <p>We embed the meaning of your work and open a door into a live room of semantically kindred minds. Sometimes three. Sometimes thirty. Always relevant.</p>
-          <div class="code mono"><span class="c">→ opening room</span><br /><span style="color:var(--violet)">protein-folding · low-data</span><br /><span class="c"># 7 minds inside</span></div>
+          <p>We embed the meaning of your work and open a door into a live room of kindred minds. Sometimes three. Sometimes thirty.</p>
+          <div class="code mono"><span class="c">→ opening room</span><br /><span class="v">protein-folding · low-data</span><br /><span class="c"># 7 minds inside</span></div>
         </article>
       </div>
     </div>
   </section>
 
   <!-- TERMINAL DEMO -->
-  <section id="demo" style="padding-top:30px;">
+  <section id="demo" style="padding-top:20px;">
     <div class="container">
       <div class="terminal-block">
         <div class="terminal reveal">
-          <div class="term-bar">
-            <span class="dotrow"><span class="d r"></span><span class="d y"></span><span class="d g"></span></span>
-            <span class="title">~/research — constellate</span>
-          </div>
+          <div class="term-bar"><span class="dotrow"><span class="d r"></span><span class="d y"></span><span class="d g"></span></span><span class="title">~/research — ohwow</span></div>
           <div class="term-body mono" id="term"></div>
         </div>
-
         <div class="terminal-copy reveal">
           <span class="eyebrow">What it feels like</span>
-          <h3 style="margin-top:18px;">From a blinking cursor to a room full of people who get it.</h3>
-          <p>You were deep in a problem nobody around you is working on. That’s the loneliness of frontier work — being the only person in the building who cares about exactly this.</p>
-          <p>Constellate listens to the <em>meaning</em> of your session, not the keywords, and finds the others.</p>
+          <h3 style="margin-top:16px;">From a blinking cursor to a room full of people who get it.</h3>
+          <p>You were deep in a problem nobody around you is working on. That’s the loneliness of frontier work — being the only person in the building who cares about <em>exactly</em> this.</p>
+          <p>ohwow listens to the <em>meaning</em> of your session, not the keywords, and finds the others.</p>
           <ul>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Semantic match, not tag soup — embeddings over your real reasoning.</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> ORCID-anchored, so the person on the other side is real.</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg> Ephemeral rooms — conversations, not another inbox.</li>
+            <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Semantic match, not tag soup — embeddings over your real reasoning.</li>
+            <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> ORCID-anchored, so the person on the other side is real.</li>
+            <li><span class="chk"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Ephemeral rooms — conversations, not another inbox.</li>
           </ul>
         </div>
       </div>
@@ -577,104 +383,65 @@
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Rooms · live right now</span>
-        <h2>Each room is a constellation of one question.</h2>
+        <h2 class="display">Each room is a <span class="squiggle mint">constellation<svg viewBox="0 0 360 12" preserveAspectRatio="none"><path d="M2 8C60 3 130 3 200 6s100 4 158 0"/></svg></span> of one question.</h2>
         <p>Not a feed. Not a forum. A small, warm space of people circling the same unknown as you.</p>
       </div>
 
       <div class="rooms" data-stagger>
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// q-bio · structure</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// q-bio · structure</span>
           <h3>Protein folding in the low-data regime</h3>
           <p>When AlphaFold isn’t enough and you have 40 sequences, not 40,000.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">MR</span>
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">JL</span>
-            <span class="av" style="background:linear-gradient(135deg,#b3a6ff,#7d6bff)">AK</span>
-            <span class="more">+4 inside</span>
-          </div>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">MR</span><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">JL</span><span class="av" style="background:linear-gradient(135deg,#ff9c80,#ff7a59)">AK</span><span class="more">+4 inside</span></div>
         </article>
-
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// climate · ml</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// climate · ml</span>
           <h3>Emulators for cloud microphysics</h3>
           <p>Trading a 6-hour simulation for a network that runs in milliseconds — and still conserves mass.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">SP</span>
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">DT</span>
-            <span class="more">+2 inside</span>
-          </div>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">SP</span><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">DT</span><span class="more">+2 inside</span></div>
         </article>
-
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// neuro · interp</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// neuro · interp</span>
           <h3>Reading meaning out of spike trains</h3>
           <p>Foundation models for neural data, and whether the latent space means anything at all.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#b3a6ff,#7d6bff)">EC</span>
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">RN</span>
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">YH</span>
-            <span class="more">+9 inside</span>
-          </div>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#a394ff,#8b7bff)">EC</span><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">RN</span><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">YH</span><span class="more">+9 inside</span></div>
         </article>
-
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// chem · generative</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// chem · generative</span>
           <h3>Synthesizable molecule generation</h3>
           <p>Beautiful generated structures are easy. Ones a lab can actually make are the hard part.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">LV</span>
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">OM</span>
-            <span class="more">+5 inside</span>
-          </div>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">LV</span><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">OM</span><span class="more">+5 inside</span></div>
         </article>
-
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// astro · surveys</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// astro · surveys</span>
           <h3>Anomaly hunting in survey data</h3>
-          <p>Finding the one weird transient in a billion light curves — without a label to tell you what weird is.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">FK</span>
-            <span class="av" style="background:linear-gradient(135deg,#b3a6ff,#7d6bff)">IG</span>
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">TW</span>
-            <span class="more">+1 inside</span>
-          </div>
+          <p>Finding the one weird transient in a billion light curves — with no label for what weird is.</p>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">FK</span><span class="av" style="background:linear-gradient(135deg,#a394ff,#8b7bff)">IG</span><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">TW</span><span class="more">+1 inside</span></div>
         </article>
-
         <article class="room-card">
-          <span class="ping"><span class="d"></span> live</span>
-          <span class="topic mono">// method · uncertainty</span>
+          <span class="ping"><span class="d"></span> live</span><span class="topic mono">// method · uncertainty</span>
           <h3>Calibrated uncertainty for scientific ML</h3>
           <p>A cross-field room: the error bar matters more than the prediction when a real decision rides on it.</p>
-          <div class="avatars">
-            <span class="av" style="background:linear-gradient(135deg,#ffd27a,#f4b54a)">BN</span>
-            <span class="av" style="background:linear-gradient(135deg,#8fe6cf,#57b9a4)">QA</span>
-            <span class="av" style="background:linear-gradient(135deg,#b3a6ff,#7d6bff)">ZD</span>
-            <span class="more">+12 inside</span>
-          </div>
+          <div class="avatars"><span class="av" style="background:linear-gradient(135deg,#46aef0,#2e9fe6)">BN</span><span class="av" style="background:linear-gradient(135deg,#3ad0aa,#1fbd97)">QA</span><span class="av" style="background:linear-gradient(135deg,#a394ff,#8b7bff)">ZD</span><span class="more">+12 inside</span></div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- WHY / MANIFESTO -->
+  <!-- WHY -->
   <section id="why">
     <div class="container manifesto reveal">
       <span class="eyebrow" style="justify-content:center;">Why we built this</span>
-      <p class="big" style="margin-top:28px;">
-        <span>The hardest part of working at the edge of a field</span>
-        isn’t the math. <span class="hl">It’s the silence.</span>
+      <p class="big">
+        The hardest part of working at the edge of a field <span>isn’t the math.</span>
+        <span class="hl">It’s the silence.</span>
         <span>Knowing that somewhere, someone is awake at 2am chasing the same impossible thing —</span>
         and never finding them.
       </p>
-      <p class="sign">Constellate exists to end that silence — and to put the wonder back in.</p>
+      <p class="sign">ohwow exists to end that silence — and put the wonder back in. ✦</p>
 
       <div class="stats" data-stagger>
-        <div class="stat"><div class="n">1 cmd</div><div class="l">from session to a room of peers</div></div>
+        <div class="stat"><div class="n">1 word</div><div class="l">from session to a room of peers</div></div>
         <div class="stat"><div class="n">~9s</div><div class="l">to embed, match, and open a door</div></div>
         <div class="stat"><div class="n">0</div><div class="l">feeds, inboxes, or notifications to manage</div></div>
       </div>
@@ -682,20 +449,20 @@
   </section>
 
   <!-- CTA -->
-  <section id="start" style="padding-top:30px;">
+  <section id="start" style="padding-top:20px;">
     <div class="container">
       <div class="cta-band reveal">
         <span class="eyebrow" style="justify-content:center;">Your turn</span>
-        <h2 style="margin-top:18px;">Turn tonight’s session<br />into a room of kindred minds.</h2>
-        <p>Run one command. Bring your ORCID. Walk into the company of people chasing your same question.</p>
+        <h2 class="display" style="margin-top:16px;">Turn tonight’s session<br />into a room of kindred minds.</h2>
+        <p>Run one word. Bring your ORCID. Walk into the company of people chasing your same question.</p>
         <div class="hero-cta">
-          <a href="#" class="btn btn-primary">Get the slash command</a>
-          <a href="#" class="btn btn-ghost">Read the docs</a>
+          <a href="#" class="btn btn-primary">Get /wonder</a>
+          <a href="#" class="btn btn-coral">Read the docs</a>
         </div>
-        <div class="cmd-pill mono" style="margin-top:32px;">
-          <span><span class="slash">/</span>constellate <span class="tag">--orcid 0000-0002-…</span></span>
+        <span class="cmd-pill mono">
+          <span><span class="slash">/</span>wonder <span class="tag">--orcid 0000-0002-…</span></span>
           <span class="run">↵ run</span>
-        </div>
+        </span>
       </div>
     </div>
   </section>
@@ -705,33 +472,17 @@
     <div class="container">
       <div class="foot-grid">
         <div class="lead">
-          <a href="#top" class="brand"><span class="star">✦</span> Constellate</a>
-          <p>A gathering place for people doing AI for science — built to spark wonder and end the loneliness of frontier work.</p>
+          <a href="#top" class="brand display"><span class="star">✦</span>oh<span class="wow">wow</span></a>
+          <p>ohwow science — a gathering place for people doing AI for science. Built to spark wonder and end the loneliness of frontier work.</p>
         </div>
         <div class="foot-cols">
-          <div class="foot-col">
-            <h4>Product</h4>
-            <a href="#how">How it works</a>
-            <a href="#rooms">Live rooms</a>
-            <a href="#">The slash command</a>
-            <a href="#">ORCID &amp; privacy</a>
-          </div>
-          <div class="foot-col">
-            <h4>Community</h4>
-            <a href="#">Field guides</a>
-            <a href="#">Room etiquette</a>
-            <a href="#">Bring your lab</a>
-          </div>
-          <div class="foot-col">
-            <h4>Company</h4>
-            <a href="#">Manifesto</a>
-            <a href="#">Open science</a>
-            <a href="#">Contact</a>
-          </div>
+          <div class="foot-col"><h4>Product</h4><a href="#how">How it works</a><a href="#rooms">Live rooms</a><a href="#">The /wonder command</a><a href="#">ORCID &amp; privacy</a></div>
+          <div class="foot-col"><h4>Community</h4><a href="#">Field guides</a><a href="#">Room etiquette</a><a href="#">Bring your lab</a></div>
+          <div class="foot-col"><h4>Company</h4><a href="#">Manifesto</a><a href="#">Open science</a><a href="#">Contact</a></div>
         </div>
       </div>
       <div class="foot-bottom">
-        <span>© 2026 Constellate · embeddings with care, identity with ORCID</span>
+        <span>© 2026 ohwow science · embeddings with care, identity with ORCID</span>
         <span class="mono">made for the ones awake at 2am ✦</span>
       </div>
     </div>
@@ -740,194 +491,112 @@
 </div>
 
 <script>
-  /* ===== Nav scroll state ===== */
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-  /* ===== Reveal on scroll ===== */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.16 });
   document.querySelectorAll('.reveal, [data-stagger]').forEach(el => io.observe(el));
+  const sq = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); sq.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  document.querySelectorAll('.squiggle').forEach(el => sq.observe(el));
 
-  /* ===== Card pointer glow ===== */
-  document.querySelectorAll('.tilt').forEach(card => {
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-      card.style.setProperty('--my', `${e.clientY - r.top}px`);
-    });
-  });
-
-  /* ===== Terminal typing demo ===== */
   const term = document.getElementById('term');
   const lines = [
-    { t: 'prompt', s: '~/research ❯ ', after: { t: 'cmd', s: '/constellate --orcid 0000-0002-1825-0097' } },
-    { t: 'dim', s: '  reading session… 142 turns' },
-    { t: 'out', s: '  distilling intent…' },
-    { t: 'ok', s: '  ✦ topic: low-data protein structure prediction' },
-    { t: 'dim', s: '  embedding meaning · matching minds…' },
-    { t: 'out', s: '  curl → constellate.science/match  ' , code:true },
-    { t: 'ok', s: '  ✓ 7 kindred researchers found' },
+    { t: 'prompt', s: '~/research ❯ ', after: { t: 'cmd', s: '/wonder --orcid 0000-0002-1825-0097' } },
+    { t: 'dim',  s: '  reading session… 142 turns' },
+    { t: 'out',  s: '  distilling intent…' },
+    { t: 'ok',   s: '  ✦ topic: low-data protein structure prediction' },
+    { t: 'dim',  s: '  embedding meaning · matching minds…' },
+    { t: 'out',  s: '  curl → ohwow.science/wonder' },
+    { t: 'ok',   s: '  ✓ 7 kindred researchers found' },
     { t: 'room', s: '  → opening room: protein-folding · low-data' },
-    { t: 'dim', s: '  you are not working alone.' },
+    { t: 'dim',  s: '  oh, wow — you are not working alone.' },
   ];
   let li = 0;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   function typeLine() {
-    if (li >= lines.length) {
-      // loop after a pause
-      setTimeout(() => { term.innerHTML = ''; li = 0; typeLine(); }, 4200);
-      return;
-    }
+    if (li >= lines.length) { setTimeout(() => { term.innerHTML = ''; li = 0; typeLine(); }, 4200); return; }
     const line = lines[li];
-    const div = document.createElement('div');
-    div.className = 'ln';
-    term.appendChild(div);
-
-    const full = line.s + (line.after ? '' : '');
+    const div = document.createElement('div'); div.className = 'ln'; term.appendChild(div);
     if (reduce) {
       div.innerHTML = `<span class="${line.t}">${line.s}</span>` + (line.after ? `<span class="${line.after.t}">${line.after.s}</span>` : '');
-      li++; setTimeout(typeLine, 120); return;
+      li++; setTimeout(typeLine, 130); return;
     }
-
-    let i = 0;
-    const base = document.createElement('span');
-    base.className = line.t;
-    div.appendChild(base);
-
-    // for prompt lines, type the command part
+    const base = document.createElement('span'); base.className = line.t; div.appendChild(base);
     const typedText = line.after ? line.after.s : line.s;
     const staticPrefix = line.after ? line.s : '';
     if (staticPrefix) base.textContent = staticPrefix;
     const typed = document.createElement('span');
     typed.className = line.after ? line.after.t : line.t;
     if (line.after) div.appendChild(typed);
-
-    const caret = document.createElement('span');
-    caret.className = 'caret';
-
-    function step() {
+    let i = 0;
+    (function step() {
       if (i <= typedText.length) {
-        if (line.after) { typed.textContent = typedText.slice(0, i); }
-        else { base.textContent = typedText.slice(0, i); }
-        i++;
-        const speed = line.after ? 26 : 8;
-        setTimeout(step, speed + Math.random()*20);
-      } else {
-        li++;
-        setTimeout(typeLine, line.after ? 380 : 260);
-      }
-    }
-    step();
+        if (line.after) typed.textContent = typedText.slice(0, i); else base.textContent = typedText.slice(0, i);
+        i++; setTimeout(step, (line.after ? 26 : 8) + Math.random() * 20);
+      } else { li++; setTimeout(typeLine, line.after ? 380 : 260); }
+    })();
   }
-  // kick off when terminal is in view
-  const termIO = new IntersectionObserver((entries, obs) => {
+  new IntersectionObserver((entries, obs) => {
     entries.forEach(e => { if (e.isIntersecting) { typeLine(); obs.disconnect(); } });
-  }, { threshold: 0.3 });
-  termIO.observe(term);
+  }, { threshold: 0.3 }).observe(term);
 
-  /* ===== Constellation canvas ===== */
+  /* Constellation canvas — bright on airy white */
   (function () {
     const canvas = document.getElementById('constellation');
     const ctx = canvas.getContext('2d');
-    let w, h, dpr, nodes = [], raf;
+    let w, h, dpr, nodes = [];
     const mouse = { x: -9999, y: -9999 };
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const GOLD = [255, 210, 122];
-    const AUR  = [143, 230, 207];
-    const VIO  = [179, 166, 255];
-    const palette = [GOLD, AUR, AUR, VIO]; // aurora weighted
-
+    const SKY = [46, 159, 230], MINT = [31, 189, 151], CORAL = [255, 122, 89];
+    const palette = [SKY, SKY, MINT, MINT, CORAL];
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = canvas.width = innerWidth * dpr;
-      h = canvas.height = innerHeight * dpr;
-      canvas.style.width = innerWidth + 'px';
-      canvas.style.height = innerHeight + 'px';
-      const count = Math.min(96, Math.floor((innerWidth * innerHeight) / 16000));
+      w = canvas.width = innerWidth * dpr; h = canvas.height = innerHeight * dpr;
+      canvas.style.width = innerWidth + 'px'; canvas.style.height = innerHeight + 'px';
+      const count = Math.min(78, Math.floor((innerWidth * innerHeight) / 19000));
       nodes = [];
-      for (let i = 0; i < count; i++) {
-        const c = palette[Math.floor(Math.random() * palette.length)];
-        nodes.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.16 * dpr,
-          vy: (Math.random() - 0.5) * 0.16 * dpr,
-          r: (Math.random() * 1.5 + 0.6) * dpr,
-          c,
-          tw: Math.random() * Math.PI * 2,
-        });
-      }
+      for (let i = 0; i < count; i++) nodes.push({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.14 * dpr, vy: (Math.random() - 0.5) * 0.14 * dpr,
+        r: (Math.random() * 1.4 + 0.6) * dpr, c: palette[(Math.random() * palette.length) | 0], tw: Math.random() * Math.PI * 2,
+      });
     }
-
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      const linkDist = 150 * dpr;
-      const mr = 200 * dpr;
-
+      const linkDist = 150 * dpr, mr = 200 * dpr;
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         if (!reduceMotion) { a.x += a.vx; a.y += a.vy; }
-        if (a.x < 0 || a.x > w) a.vx *= -1;
-        if (a.y < 0 || a.y > h) a.vy *= -1;
-
-        // links
+        if (a.x < 0 || a.x > w) a.vx *= -1; if (a.y < 0 || a.y > h) a.vy *= -1;
         for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const d = Math.hypot(dx, dy);
+          const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
           if (d < linkDist) {
-            const alpha = (1 - d / linkDist) * 0.5;
-            const c = a.c;
-            ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`;
-            ctx.lineWidth = 0.6 * dpr;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
+            const alpha = (1 - d / linkDist) * 0.26, c = a.c;
+            ctx.strokeStyle = `rgba(${c[0]},${c[1]},${c[2]},${alpha})`; ctx.lineWidth = 0.7 * dpr;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
-
-        // link to mouse — "drawing lines to you"
-        const mdx = a.x - mouse.x, mdy = a.y - mouse.y;
-        const md = Math.hypot(mdx, mdy);
+        const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
         if (md < mr) {
-          const alpha = (1 - md / mr) * 0.7;
-          ctx.strokeStyle = `rgba(${AUR[0]},${AUR[1]},${AUR[2]},${alpha})`;
-          ctx.lineWidth = 0.8 * dpr;
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
+          const alpha = (1 - md / mr) * 0.5;
+          ctx.strokeStyle = `rgba(${MINT[0]},${MINT[1]},${MINT[2]},${alpha})`; ctx.lineWidth = 0.9 * dpr;
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
         }
-
-        // node
-        a.tw += 0.02;
-        const tw = (Math.sin(a.tw) * 0.4 + 0.6);
-        const c = a.c;
-        ctx.beginPath();
-        ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${0.85 * tw})`;
-        ctx.shadowColor = `rgba(${c[0]},${c[1]},${c[2]},0.9)`;
-        ctx.shadowBlur = 8 * dpr * tw;
-        ctx.fill();
-        ctx.shadowBlur = 0;
+        a.tw += 0.02; const tw = Math.sin(a.tw) * 0.4 + 0.6, c = a.c;
+        ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${0.7 * tw})`; ctx.fill();
       }
-      raf = requestAnimationFrame(draw);
+      requestAnimationFrame(draw);
     }
-
     window.addEventListener('resize', resize);
     window.addEventListener('pointermove', (e) => { mouse.x = e.clientX * dpr; mouse.y = e.clientY * dpr; });
     window.addEventListener('pointerleave', () => { mouse.x = -9999; mouse.y = -9999; });
-    // pointer over content still tracked via window; that's intended.
-
-    resize();
-    draw();
+    resize(); draw();
   })();
 </script>
 </body>
