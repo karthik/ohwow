@@ -117,6 +117,17 @@
   .fund .ft { display:flex; justify-content:space-between; font-size:.44em; font-weight:700; margin-bottom:5px; }
   .bar { height:15px; border:2.5px solid var(--ink); border-radius:100px; overflow:hidden; background:var(--card); }
   .bar span { display:block; height:100%; }
+
+  /* market bullseye (TAM/SAM/SOM) */
+  .bullseye { position:relative; width:392px; height:392px; flex-shrink:0; }
+  .bullseye .ring { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); border:var(--ob) solid var(--ink); border-radius:50%; }
+  .bullseye .r1 { width:392px; height:392px; background:var(--lilac); box-shadow:var(--pop); }
+  .bullseye .r2 { width:262px; height:262px; background:var(--blue); box-shadow:var(--pop-sm); }
+  .bullseye .r3 { width:146px; height:146px; background:var(--coral); box-shadow:var(--pop-sm); display:grid; place-items:center; }
+  .bullseye .bl { position:absolute; top:14px; left:50%; transform:translateX(-50%); white-space:nowrap;
+                  font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:700; color:var(--ink); letter-spacing:.02em; }
+  .bullseye .bl b { color:var(--coral-deep); }
+  .bullseye .r3 .bl { position:static; transform:none; top:auto; text-align:center; font-size:14px; line-height:1.05; color:#fff; }
 </style>
 </head>
 <body>
@@ -202,16 +213,22 @@
 
   <!-- 6. MARKET -->
   <section data-background-color="#7cc6f5">
-    <div class="stack">
-      <span class="chip">the market</span>
-      <h2>Facebook started in one dorm.<br/><span class="pop">We start in the lab.</span></h2>
-      <div class="funnel" style="margin-top:4px;">
-        <div class="fstep"><div class="fn" style="background:#ff7d4f">1</div><div class="ft"><b>Researchers — the beachhead.</b> ~9M worldwide (UNESCO), ORCID-verified, highest signal &amp; trust · <b>~$1B/yr</b> in institutional seats.</div></div>
-        <div class="fstep"><div class="fn" style="background:#7cc6f5">2</div><div class="ft"><b>Everyone who works with AI.</b> ~300M people use AI for work today — the next ring out.</div></div>
-        <div class="fstep"><div class="fn" style="background:#74d3a0">3</div><div class="ft"><b>~1B+ by 2030 · $30B+.</b> As working alongside AI goes universal, so does needing your people.</div></div>
+    <div class="row" style="gap:52px;">
+      <div class="stack grow" style="gap:20px;">
+        <span class="chip">the market</span>
+        <h2>Facebook started in one dorm.<br/><span class="pop">We start in the lab.</span></h2>
+        <div>
+          <div class="ask-num" style="font-size:2.2em;">~$1B<span style="font-size:.36em; font-weight:700; color:var(--ink-soft);">&nbsp;/yr</span></div>
+          <p class="sub" style="max-width:17em; margin-top:8px;">addressable in research seats alone — <b>~9M</b> ORCID-verified researchers (UNESCO) × <b>$100</b>. The same need is going universal.</p>
+        </div>
+      </div>
+      <div class="bullseye">
+        <div class="ring r1"><span class="bl">1B+ · everyone with AI · '30</span></div>
+        <div class="ring r2"><span class="bl">9M · researchers · <b>$1B</b></span></div>
+        <div class="ring r3"><span class="bl">start in<br/>the&nbsp;lab</span></div>
       </div>
     </div>
-    <div class="foot" style="color:rgba(44,38,34,.55)">~9M researchers (UNESCO) × $100/researcher/yr ≈ $1B; adoption 300M→1B+ per market_summary.md</div>
+    <div class="foot" style="color:rgba(44,38,34,.55)">~9M researchers (UNESCO Science Report) × $100/yr ≈ $1B SAM · AI-for-work adoption 300M→1B+ directional</div>
   </section>
 
   <!-- 7. BUSINESS MODEL -->
