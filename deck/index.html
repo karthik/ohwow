@@ -79,6 +79,39 @@
   .grow { flex:1; }
   .foot { position:absolute; bottom:18px; left:42px; font-size:.46em; color:var(--ink-faint); font-weight:600; }
   .white .foot { color:rgba(255,255,255,0.7); }
+
+  /* ---------- deck v2: fundraising slides ---------- */
+  .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; width:100%; }
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:22px; width:100%; align-items:stretch; }
+  .card { background:var(--card); border:var(--ob) solid var(--ink); border-radius:18px; box-shadow:var(--pop); padding:22px 24px; }
+  .card.yellow{background:var(--yellow);}
+  .statcard .n { font-size:1.9em; font-weight:800; letter-spacing:-0.045em; color:var(--coral-deep); line-height:1; }
+  .statcard .n.g { color:var(--green-deep); } .statcard .n.p { color:var(--plum); }
+  .statcard .l { font-size:.46em; color:var(--ink-soft); font-weight:600; margin-top:12px; line-height:1.45; }
+  .card h3 { font-size:.8em; margin-bottom:10px; }
+  .cardlist { list-style:none; margin:0; padding:0; display:grid; gap:11px; }
+  .cardlist li { font-size:.5em; font-weight:600; display:flex; gap:8px; align-items:flex-start; line-height:1.45; color:var(--ink); }
+  .cardlist li b { color:var(--coral-deep); }
+  .pricerow { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .price { font-family:'JetBrains Mono',monospace; font-size:.42em; font-weight:700; background:var(--card); border:var(--ob) solid var(--ink); border-radius:100px; padding:7px 14px; box-shadow:var(--pop-sm); }
+  .price b { color:var(--coral-deep); }
+  .todo { display:inline-flex; align-items:center; gap:.5em; font-family:'JetBrains Mono',monospace; font-size:.36em; font-weight:700; color:var(--coral-deep); background:#fff; border:2px dashed var(--coral); border-radius:8px; padding:5px 11px; align-self:flex-start; }
+  .todo::before { content:"✎"; }
+  .funnel { display:grid; gap:12px; width:100%; max-width:920px; }
+  .fstep { display:flex; align-items:center; gap:16px; background:var(--card); border:var(--ob) solid var(--ink); border-radius:14px; box-shadow:var(--pop-sm); padding:13px 18px; }
+  .fstep .fn { flex-shrink:0; width:40px;height:40px;border-radius:10px;border:var(--ob) solid var(--ink); display:grid;place-items:center; font-weight:800; font-size:.62em; box-shadow:var(--pop-sm);}
+  .fstep .ft { font-size:.5em; font-weight:600; line-height:1.45; } .fstep .ft b{font-weight:800;}
+  .team { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; width:100%; }
+  .teamcard { padding:20px 18px; }
+  .teamcard .ava { width:52px;height:52px;border-radius:50%; border:var(--ob) solid var(--ink); box-shadow:var(--pop-sm); display:grid;place-items:center; font-weight:800; font-size:.56em; color:#fff; margin-bottom:12px; }
+  .teamcard h3 { font-size:.56em; font-weight:800; }
+  .teamcard .role { font-family:'JetBrains Mono',monospace; font-size:.36em; color:var(--coral-deep); font-weight:700; margin:5px 0 9px; letter-spacing:.03em; }
+  .teamcard p { font-size:.4em; color:var(--ink-soft); font-weight:500; line-height:1.5; }
+  .ask-num { font-size:3em; font-weight:800; letter-spacing:-0.05em; color:var(--coral-deep); line-height:.9; }
+  .fund { display:grid; gap:11px; width:100%; max-width:430px; }
+  .fund .ft { display:flex; justify-content:space-between; font-size:.44em; font-weight:700; margin-bottom:5px; }
+  .bar { height:15px; border:2.5px solid var(--ink); border-radius:100px; overflow:hidden; background:var(--card); }
+  .bar span { display:block; height:100%; }
 </style>
 </head>
 <body>
@@ -101,7 +134,7 @@
         <use href="#sparkle" x="46" y="46" width="36" style="color:#ff7d4f"/>
       </svg>
     </div>
-    <div class="foot">ohwow science · seed round</div>
+    <div class="foot">ohwow science · seed round 2026</div>
   </section>
 
   <!-- 2. PROBLEM -->
@@ -113,7 +146,20 @@
     </div>
   </section>
 
-  <!-- 3. SOLUTION -->
+  <!-- 3. WHY NOW -->
+  <section data-background-color="#7cc6f5">
+    <div class="stack">
+      <span class="chip">why now</span>
+      <h2>Three things just became true.</h2>
+      <ul class="flat" style="margin-top:4px;">
+        <li><span class="b" style="background:#fff">AI</span> Researchers run AI sessions daily — a live signal of what they're working on.</li>
+        <li><span class="b" style="background:#fff">iD</span> ORCID is the near-universal identity layer for science.</li>
+        <li><span class="b" style="background:#fff">≈</span> Embeddings made matching on meaning cheap and good.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. SOLUTION -->
   <section data-background-color="#ff7d4f" class="white">
     <div class="stack center">
       <span class="chip">the solution</span>
@@ -125,14 +171,14 @@
     </div>
   </section>
 
-  <!-- 4. DEMO -->
+  <!-- 5. DEMO -->
   <section data-background-color="#f4efe4">
-    <div class="row">
-      <div class="stack grow" style="max-width:9em;">
+    <div class="row" style="gap:40px;">
+      <div class="stack" style="flex:0 0 240px;">
         <span class="chip">in the wild</span>
-        <h2>A blinking cursor,<br/>then your people.</h2>
+        <h2 style="font-size:2em;">A blinking cursor,<br/>then your people.</h2>
       </div>
-      <div class="terminal">
+      <div class="terminal" style="flex:1; max-width:none;">
         <div class="term-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="title">~/research</span><span class="cc">✻ Claude Code</span></div>
         <div class="term-body">
           <div class="box"><span class="pr">&gt;</span> <span class="cmd">/wonder</span></div><br/>
@@ -149,29 +195,106 @@
     </div>
   </section>
 
-  <!-- 5. WHY NOW -->
+  <!-- 6. MARKET -->
   <section data-background-color="#7cc6f5">
     <div class="stack">
-      <span class="chip">why now</span>
-      <h2>Three things just became true.</h2>
-      <ul class="flat" style="margin-top:4px;">
-        <li><span class="b" style="background:#fff">AI</span> Researchers run AI sessions daily — a live signal of what they're working on.</li>
-        <li><span class="b" style="background:#fff">iD</span> ORCID is the near-universal identity layer for science.</li>
-        <li><span class="b" style="background:#fff">≈</span> Embeddings made matching on meaning cheap and good.</li>
+      <span class="chip">the market</span>
+      <h2>A large, fast-growing wedge.</h2>
+      <div class="grid3" style="margin-top:6px;">
+        <div class="card statcard"><div class="n">2M+</div><div class="l">Researchers running AI sessions in their work today — each one a live signal of what they're chasing.</div></div>
+        <div class="card statcard"><div class="n g">5,000+</div><div class="l">Institutions that employ them — R1 universities, national labs, biotech &amp; pharma R&amp;D, AI labs.</div></div>
+        <div class="card statcard"><div class="n p">$1B+</div><div class="l">Annual seat market, bottoms-up at a conservative per-seat price.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BUSINESS MODEL -->
+  <section data-background-color="#74d3a0">
+    <div class="stack">
+      <span class="chip">business model</span>
+      <h2>Free for researchers.<br/>Institutions pay for seats.</h2>
+      <div class="grid2" style="margin-top:2px;">
+        <div class="card">
+          <h3>✦ Researchers — free, forever</h3>
+          <ul class="cardlist">
+            <li>Free maximizes adoption — and the matching signal only gets good at scale.</li>
+            <li>Every active researcher makes every room better.</li>
+          </ul>
+        </div>
+        <div class="card yellow">
+          <h3>✦ Institutions — paid seats</h3>
+          <ul class="cardlist">
+            <li><b>Who buys:</b>&nbsp;labs, departments, research offices, corporate R&amp;D.</li>
+            <li><b>Why:</b>&nbsp;researcher retention, cross-team discovery, less reinventing, recruiting signal.</li>
+          </ul>
+          <div class="pricerow">
+            <span class="price"><b>Lab</b> $20/mo</span><span class="price"><b>Dept</b> $1,000/mo</span><span class="price"><b>Institution</b> $5,000/mo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. GO TO MARKET -->
+  <section data-background-color="#ffd64d">
+    <div class="stack">
+      <span class="chip">go to market</span>
+      <h2>Bottoms-up in. Top-down out.</h2>
+      <div class="funnel" style="margin-top:4px;">
+        <div class="fstep"><div class="fn" style="background:#7cc6f5">1</div><div class="ft"><b>Land researchers, free.</b></div></div>
+        <div class="fstep"><div class="fn" style="background:#ff9ec6">2</div><div class="ft"><b>Rooms create gravity.</b></div></div>
+        <div class="fstep"><div class="fn" style="background:#74d3a0">3</div><div class="ft"><b>Convert to contracts.</b></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. WHY WE WIN -->
+  <section data-background-color="#c6b4f2">
+    <div class="stack">
+      <span class="chip">why we win</span>
+      <h2>Hard to copy. Compounds over time.</h2>
+      <ul class="flat" style="margin-top:2px; gap:14px;">
+        <li><span class="b" style="background:#fff">iD</span> <span><b>Verified identity.</b> Every researcher anchored to a real ORCID — trust you can't fake or scrape.</span></li>
+        <li><span class="b" style="background:#fff">≈</span> <span><b>Meaning-matching.</b> We match on what a session was actually about, not tags or keywords.</span></li>
+        <li><span class="b" style="background:#fff">◎</span> <span><b>Network effects.</b> Every active researcher makes matching sharper and rooms denser, field by field.</span></li>
+        <li><span class="b" style="background:#fff">⌘</span> <span><b>Native distribution.</b> We live inside the AI tools researchers use daily — no new surface to adopt.</span></li>
       </ul>
     </div>
   </section>
 
-  <!-- 6. VISION + ASK -->
+  <!-- 10. TEAM -->
   <section data-background-color="#f4efe4">
-    <div class="row">
-      <div class="stack grow">
-        <span class="chip">the ask</span>
-        <h1>From alone<br/><span class="squiggle green">to together.<svg viewBox="0 0 260 12" preserveAspectRatio="none"><path d="M2 8C50 3 110 3 160 6s80 4 98 0"/></svg></span></h1>
-        <p class="sub">Raising a seed round to bring <strong>/wonder</strong> to every researcher doing AI for science.</p>
-        <p class="mono" style="color:var(--ink-faint); font-size:.6em;">ohwow.science · awake at 2am ✦</p>
+    <div class="stack">
+      <span class="chip">the team</span>
+      <h2>Why us.</h2>
+      <div class="team" style="margin-top:6px;">
+        <div class="card teamcard"><div class="ava" style="background:#ff7d4f">CG</div><h3>Casey Greene</h3><div class="role">HEAD OF INVESTOR RELATIONS</div><p>Bridges frontier science and the capital that funds it — getting why this matters into the right rooms.</p></div>
+        <div class="card teamcard"><div class="ava" style="background:#7cc6f5">HL</div><h3>Henry Lee</h3><div class="role">CHIEF MARKETING OFFICER</div><p>Turns "oh, wow" into a movement. Built audiences for dev tools researchers actually adopt.</p></div>
+        <div class="card teamcard"><div class="ava" style="background:#2f9b72">BC</div><h3>Betsy Cannon</h3><div class="role">CHIEF TECHNOLOGY &amp; FORKS OFFICER</div><p>Builds the matching engine — embeddings, ORCID, and the infra that opens a room in under a second.</p></div>
+        <div class="card teamcard"><div class="ava" style="background:#8f6ad6">KR</div><h3>Karthik Ram</h3><div class="role">CHIEF WONDER OFFICER</div><p>Keeps the 2am magic alive — making sure no one chasing a hard question ever has to wonder alone.</p></div>
       </div>
-      <svg class="cast" viewBox="0 0 540 470" aria-hidden="true">
+    </div>
+  </section>
+
+  <!-- 11. THE ASK -->
+  <section data-background-color="#f4efe4">
+    <div class="row" style="gap:40px;">
+      <div class="stack grow" style="gap:18px;">
+        <span class="chip">the ask</span>
+        <h2>From alone <span class="squiggle green">to together.<svg viewBox="0 0 260 12" preserveAspectRatio="none"><path d="M2 8C50 3 110 3 160 6s80 4 98 0"/></svg></span></h2>
+        <div style="display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;">
+          <span class="ask-num">$1MM</span><span class="pill"><b>seed</b> · ~18-mo runway</span>
+        </div>
+        <div class="fund">
+          <div><div class="ft"><span>Product &amp; engineering</span><span>50%</span></div><div class="bar"><span style="width:50%;background:var(--coral)"></span></div></div>
+          <div><div class="ft"><span>Research &amp; community</span><span>30%</span></div><div class="bar"><span style="width:30%;background:var(--green)"></span></div></div>
+          <div><div class="ft"><span>Go-to-market</span><span>20%</span></div><div class="bar"><span style="width:20%;background:var(--plum)"></span></div></div>
+        </div>
+        <div class="steps">
+          <span class="pill">✦ /wonder GA</span><span class="pill">✦ 10 design-partner institutions</span><span class="pill">✦ first paid site licenses</span>
+        </div>
+      </div>
+      <svg class="cast" style="max-width:360px;" viewBox="0 0 540 470" aria-hidden="true">
         <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe488"/><stop offset="1" stop-color="#ffce4a"/></linearGradient></defs>
         <path d="M44 422 Q270 410 496 422" fill="none" class="ink" stroke-width="5" stroke-linecap="round"/>
         <g stroke="#ffce4a" stroke-width="10" stroke-linecap="round">
@@ -188,7 +311,6 @@
         <circle cx="140" cy="315" r="5.5" fill="#2c2622"/><circle cx="178" cy="315" r="5.5" fill="#2c2622"/>
         <path d="M144 332 Q159 346 174 332" fill="none" class="ink" stroke-width="4.5" stroke-linecap="round"/>
         <ellipse cx="128" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/><ellipse cx="190" cy="330" rx="9" ry="6" fill="#ff7d4f" opacity="0.4"/>
-        <!-- lilac behind moon -->
         <circle cx="478" cy="352" r="44" fill="#c6b4f2" class="ink" stroke-width="5"/>
         <circle cx="466" cy="347" r="5" fill="#2c2622"/><circle cx="490" cy="347" r="5" fill="#2c2622"/>
         <path d="M468 360 Q478 369 488 360" fill="none" class="ink" stroke-width="4" stroke-linecap="round"/>
@@ -205,6 +327,7 @@
         <ellipse cx="55" cy="360" rx="7" ry="5" fill="#ef5a2a" opacity="0.45"/><ellipse cx="93" cy="360" rx="7" ry="5" fill="#ef5a2a" opacity="0.45"/>
       </svg>
     </div>
+    <div class="foot">ohwow.science · awake at 2am ✦</div>
   </section>
 
 </div>
@@ -212,7 +335,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
 <script>
-  Reveal.initialize({ width:1180, height:720, margin:0.055, hash:true, controls:false, progress:true, slideNumber:'c/t', transition:'slide', controlsTutorial:false });
+  Reveal.initialize({ width:1180, height:720, margin:0.055, hash:true, controls:false, progress:true, slideNumber:'c/t', transition:'none', controlsTutorial:false });
 </script>
 </body>
 </html>
