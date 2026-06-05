@@ -11,9 +11,7 @@ Static HTML, no build step. **Pushing to `main` auto-deploys** to www.ohwow.scie
 
 | Path | What |
 |------|------|
-| `index.html` | the landing page (`/`) — pitch, demo, how it works, privacy, community, footer |
-| `install/index.html` | `/install` — the ~30-second "get /wonder" walkthrough |
-| `together/index.html` | `/together` — currently a near-duplicate of `/install` (see Notes) |
+| `index.html` | the landing page (`/`) — pitch, demo, the install steps (`#how`), privacy, community, footer |
 | `deck/index.html` | `/deck/` — the **funder** pitch deck (reveal.js) |
 | `deck/scientists.html` | `/deck/scientists.html` — the **scientist-facing** deck (reveal.js) |
 | `CNAME`, `favicon.svg` | custom domain + icon |
@@ -47,8 +45,14 @@ connection to render.
   links rely on `html { scroll-padding-top: 110px }` to land *below* the bar. If the nav
   height changes, update that offset.
 
-## Notes / cleanup
+## Install command
 
-- **`install/` vs `together/`** are currently near-identical. If `/together` should be its
-  own page, give it distinct content; otherwise one of them can go.
-- Old deck backups belong in git history, not the tree (e.g. a `*.backup.html`).
+The canonical install is the two-step marketplace flow (the `#how` section shows it):
+
+```
+/plugin marketplace add cgreene/wonder
+/plugin install wonder@ohwow
+```
+
+`@ohwow` is the marketplace name from `cgreene/wonder`'s `.claude-plugin/marketplace.json` —
+not the domain. If that name changes, update the landing's `#how` step and the `#start` CTA.
