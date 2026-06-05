@@ -133,6 +133,20 @@
   .shot { background:#fff; border:var(--ob) solid var(--ink); border-radius:14px; box-shadow:var(--pop); overflow:hidden; }
   .shot img { display:block; width:100%; height:auto; }
   .bullseye .r3 .bl { position:static; transform:none; top:auto; text-align:center; font-size:14px; line-height:1.05; color:#fff; }
+
+  /* review-gate mock (stands in for a product screenshot) */
+  .gate { font-family:'JetBrains Mono', monospace; }
+  .gate .gbar { display:flex; align-items:center; gap:7px; padding:10px 14px; border-bottom:var(--ob) solid var(--ink); background:var(--bg); font-size:.42em; font-weight:700; color:var(--ink-soft); }
+  .gate .gbar .star { color:var(--coral); }
+  .gate .gbody { padding:15px 18px; }
+  .gate .glabel { font-size:.36em; font-weight:600; color:var(--ink-faint); margin-bottom:9px; }
+  .gate .gkw { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:13px; }
+  .gate .gkw span { font-size:.38em; font-weight:700; background:var(--lilac); border:2px solid var(--ink); border-radius:7px; padding:3px 8px; }
+  .gate .grow { display:grid; grid-template-columns:96px 1fr; gap:10px; font-size:.38em; padding:6px 0; border-top:1.5px solid rgba(44,38,34,.12); }
+  .gate .grow b { color:var(--ink-soft); font-weight:700; }
+  .gate .gapprove { display:flex; align-items:center; gap:9px; margin-top:13px; font-size:.4em; font-weight:700; }
+  .gate .gapprove .yes { background:var(--green); border:2px solid var(--ink); border-radius:7px; padding:4px 12px; box-shadow:var(--pop-sm); }
+  .gate .gapprove .opt { color:var(--ink-faint); }
 </style>
 </head>
 <body>
@@ -225,7 +239,19 @@
         <p class="sub" style="font-size:.66em; max-width:none;">Your session is scrubbed to a handful of keywords — secrets, file paths, names, and <strong>unpublished work</strong> stripped — then shown to you for approval before anything is sent. <strong>You stay in control.</strong></p>
       </div>
       <div class="shot" style="flex:1;">
-        <img src="wonder-review-gate.png" alt="The /wonder review gate: sanitized keywords and a structured profile shown for the researcher to approve before anything is sent." />
+        <div class="gate">
+          <div class="gbar"><span class="star">✦</span> /wonder · review gate</div>
+          <div class="gbody">
+            <div class="glabel">Keywords — the public surface · everyone in the room sees these</div>
+            <div class="gkw">
+              <span>researcher matching</span><span>privacy-preserving llm tooling</span><span>ai for science</span><span>mcp servers</span><span>sensitive-data scrubbing</span>
+            </div>
+            <div class="grow"><b>wondering</b><span>turn an AI session into a safely-shareable signal</span></div>
+            <div class="grow"><b>field</b><span>AI for science — collaboration tooling</span></div>
+            <div class="grow"><b>looking for</b><span>others building researcher-matching tools</span></div>
+            <div class="gapprove"><span class="yes">Send it ✓</span><span class="opt">edit</span><span class="opt">cancel</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
